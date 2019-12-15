@@ -1,0 +1,9 @@
+@import "./../../../styles/variables";
+
+.separator {
+  border: 1px solid $colorBackground;
+
+  &.80-percent {
+    width: 80%;
+  }
+}

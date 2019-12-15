@@ -1,0 +1,14 @@
+@import "./../../../styles/variables";
+
+#button--container {
+  .button {
+    width: 200px;
+    padding: 7px 0;
+    @include border-radius(5px);
+    border: none;
+    font-family: $fontRoboto;
+    font-size: 15px;
+    color: white;
+    background-color: $colorPrimary;
+  }
+}

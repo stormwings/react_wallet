@@ -1,0 +1,59 @@
+// colors
+
+$colorWhite: #ffffff;
+$colorPrimary: #35438e;
+$colorBackground: #C8C5E2;
+
+// media queries
+
+$desk-1920: 1920px;
+$desk-1680: 1680px;
+$desk-1440: 1440px;
+$desk-1366: 1366px;
+$desk-1024: 1024px;
+$mobile-900: 900px;
+$mobile-768: 768px;
+$mobile-600: 600px;
+$mobile-460: 460px;
+$mobile-420: 420px;
+$mobile-375: 375px;
+$mobile-320: 320px;
+
+// fonts
+
+$fontRoboto: 'Roboto',
+sans-serif;
+
+// mixins
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -ms-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
+  -ms-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+
+  :-moz-placeholder {
+    @content;
+  }
+
+  ::-moz-placeholder {
+    @content;
+  }
+
+  :-ms-input-placeholder {
+    @content;
+  }
+}
