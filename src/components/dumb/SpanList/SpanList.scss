@@ -1,0 +1,21 @@
+@import "./../../../styles/variables";
+
+#span-list--container {
+  width: $mobile-320;
+  padding: 0 15px;
+  display: flex;
+  color: $colorGray;
+  font-family: $fontRoboto;
+  justify-content: space-between;
+
+  &.capital-letters {
+    text-transform: uppercase;
+  }
+
+  .span-list--content--url {
+    color: $colorPrimary;
+    text-transform: none;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
