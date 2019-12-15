@@ -1,18 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import './App.scss';
-import SpanList from './components/dumb/SpanList/SpanList';
-import Button from './components/dumb/Button/Button';
+
+import Icon from './components/dumb/Icon/Icon';
+import addIcon from './assets/add.svg';
 
 const App: FunctionComponent = () => {
   return (
     <div className="container">
-      <SpanList
-        className="capital-letters"
-        content="Yesterday"
-        contentSecondary="See all"
-        onClickContentSecondary={() => console.log('change')}
-      />
-      <Button content="Login" onClick={() => console.log('click')} />
+      <Icon copy="Mariano" image={addIcon} onClick={() => console.log('Mariano')} />
     </div>
   );
 };

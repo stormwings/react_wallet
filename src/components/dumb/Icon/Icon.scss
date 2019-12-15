@@ -1,0 +1,27 @@
+@import "./../../../styles/variables";
+
+#icon--container {
+  width: 50px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: $colorWhite;
+  cursor: pointer;
+  @include border-radius(10px);
+  @include box-shadow(0px 0px 10px -8px rgba(0, 0, 0, 0.75));
+
+  .icon__image {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .icon__title {
+    width: 90%;
+    height: 20%;
+    margin: 3% auto 10%;
+    font-size: 0.8em;
+    color: $colorPrimary;
+    text-align: center;
+    @include user-select-none;
+  }
+}
