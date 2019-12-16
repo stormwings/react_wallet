@@ -1,0 +1,16 @@
+#card-header--container {
+  display: flex;
+
+  .icon--container {
+    width: 15%;
+    margin: auto 10px auto 10px;
+
+    .icon {
+      width: 100%;
+    }
+  }
+
+  .text--container {
+    margin: auto 0;
+  }
+}

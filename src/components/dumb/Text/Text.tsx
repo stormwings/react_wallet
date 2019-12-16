@@ -1,17 +1,22 @@
 import React from 'react';
 import './Text.scss';
 
-interface IProps {
-  className?: string;
+interface IPropsText {
   content: string;
+  className?: string;
 }
 
-export const Title = ({ content, className }: IProps) => {
-  const componentClassName = `global--title ${className}`;
-  return <h2 className={componentClassName}>{content}</h2>;
+export const Title = ({ content, className }: IPropsText) => {
+  return (
+    <h2 id="global--title" className={className}>
+      {content}
+    </h2>
+  );
 };
-
-export const Subtitle = ({ content, className }: IProps) => {
-  const componentClassName = `global--subtitle ${className}`;
-  return <h3 className={componentClassName}>{content}</h3>;
+export const Subtitle = ({ content, className }: IPropsText) => {
+  return (
+    <h3 id="global--subtitle" className={className}>
+      {content}
+    </h3>
+  );
 };
