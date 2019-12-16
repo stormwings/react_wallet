@@ -1,3 +1,5 @@
+@import "./../../../styles/variables";
+
 #card-header--container {
   display: flex;
 
@@ -12,5 +14,18 @@
 
   .text--container {
     margin: auto 0;
+  }
+
+  &.operations {
+    .text--container {
+      h2 {
+        color: $colorSuccess !important;
+        margin-bottom: 5px;
+      }
+
+      h3 {
+        color: $colorRed !important;
+      }
+    }
   }
 }
