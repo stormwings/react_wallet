@@ -3,7 +3,7 @@ import './CardHeader.scss';
 import { Title, Subtitle } from '../Text/Text';
 
 interface IProps {
-  content: string;
+  content?: string;
   subtitle?: string;
   icon?: string;
   className?: string;
@@ -18,7 +18,7 @@ export const CardHeader = ({ content, subtitle, className, icon }: IProps) => {
         </div>
       )}
       <div className="text--container">
-        <Title content={content} className="no-margin" />
+        {content && <Title content={content} className="no-margin" />}
         {subtitle && <Subtitle content={subtitle} className="no-margin" />}
       </div>
     </div>
