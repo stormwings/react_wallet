@@ -1,0 +1,18 @@
+@import "./../../../styles/variables";
+
+.temporal--container {
+  width: 375px;
+
+  #currency-status {
+    width: auto;
+    cursor: pointer;
+
+    .principal {
+      margin: 3px 0;
+
+      &__span {
+        color: $colorWhite;
+      }
+    }
+  }
+}
