@@ -1,0 +1,11 @@
+@import "./../../../styles/variables";
+
+#container--screen {
+  width: 80%;
+  height: 150px;
+  background-color: $colorWhite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include border-radius(22px);
+}
