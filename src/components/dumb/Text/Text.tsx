@@ -4,11 +4,12 @@ import './Text.scss';
 interface IPropsText {
   content: string;
   className?: string;
+  style?: object;
 }
 
-export const Title = ({ content, className }: IPropsText) => {
+export const Title = ({ content, className, style }: IPropsText) => {
   return (
-    <h2 id="global--title" className={className}>
+    <h2 id="global--title" className={className} style={style}>
       {content}
     </h2>
   );

@@ -4,4 +4,11 @@
   border: 1px solid $colorBackground;
   width: 90%;
 
+  &.medium {
+    margin: 15px 0;
+  }
+
+  &.empty {
+    border: none;
+  }
 }
