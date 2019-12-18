@@ -2,10 +2,11 @@ import React, { FunctionComponent } from 'react';
 import './CurrencyStatus.scss';
 import CardHeader from '../CardHeader/CardHeader';
 
-import bitcoin from './../../../assets/bitcoin_coin.svg';
-import exchange from './../../../assets/exchange.svg';
+import bitcoin from './../../../assets/svg/icon_bitcoin.svg';
+import exchange from './../../../assets/svg/exchange.svg';
 
 interface IProps {
+  principalIcon: 'bitcoin' | 'ethereum';
   principalValue: string;
   secondaryValue: string;
   changeHelper?: boolean;

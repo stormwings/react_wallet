@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import './Navbar.scss';
-import image from './../../../assets/menu-navbar.svg';
-import myavatar from './../../../assets/user.svg';
-import Avatar from '../Avatar/Avatar';
+import ImageMenuIcon from '../../../assets/image/menu.png';
+import SvgUser from '../../../assets/components/SvgUser';
 
 interface IProps {
   title: string;
@@ -12,15 +11,13 @@ export const Navbar: FunctionComponent<IProps> = props => {
   const { title } = props;
 
   return (
-    <div className="temporalcontainer">
-      <div id="navbar">
-        <div className="menu-icon">
-          <img src={image} alt="menu button" className="image" />
-          <span className="title">{title}</span>
-        </div>
-        <div className="menu-avatar">
-          <Avatar image={myavatar} />
-        </div>
+    <div id="navbar">
+      <div className="menu-icon">
+        <img src={ImageMenuIcon} alt="menu-icon" className="image" />
+        <span className="title">{title}</span>
+      </div>
+      <div className="menu-avatar">
+        <SvgUser className="image" />
       </div>
     </div>
   );

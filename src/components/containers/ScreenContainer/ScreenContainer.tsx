@@ -1,8 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import './ScreenContainer.scss';
 
-const ScreenContainer: FunctionComponent = props => {
-  return <div id="container--screen">{props.children}</div>;
+interface IProps {
+  style?: any;
+}
+
+const ScreenContainer: FunctionComponent<IProps> = props => {
+  return (
+    <div id="container--screen" style={props.style ? props.style : {}}>
+      {props.children}
+    </div>
+  );
 };
 
 export default ScreenContainer;

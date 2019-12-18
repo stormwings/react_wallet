@@ -2,8 +2,6 @@
 
 .separator {
   border: 1px solid $colorBackground;
+  width: 90%;
 
-  &.80-percent {
-    width: 80%;
-  }
 }

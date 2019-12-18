@@ -13,13 +13,13 @@
     align-items: center;
 
     .image {
-      width: 20px;
+      width: 25px;
       padding-right: 12px;
       color: $colorWhite;
     }
 
     .title {
-      // color: $colorWhite;
+      color: $colorWhite;
       font-size: 23px;
       font-family: $fontRoboto;
     }
@@ -27,11 +27,11 @@
 
   .menu-avatar {
     padding-top: 10px;
-    padding-right: 21px;
-  }
-}
+    padding-right: 15px;
 
-// delete
-.temporalcontainer {
-  width: 375px;
+    .image {
+      width: 30px;
+      color: $colorWhite;
+    }
+  }
 }

@@ -1,8 +1,7 @@
 @import "./../../../styles/variables";
 
 #span-list--container {
-  width: $mobile-320;
-  padding: 0 15px;
+  width: 100%;
   display: flex;
   color: $colorGray;
   font-family: $fontRoboto;
@@ -12,8 +11,13 @@
     text-transform: uppercase;
   }
 
+  .span-list--content {
+    padding: 0 10%;
+  }
+
   .span-list--content--url {
     color: $colorPrimary;
+    padding: 0 10%;
     text-transform: none;
     text-decoration: none;
     cursor: pointer;
