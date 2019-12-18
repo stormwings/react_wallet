@@ -1,0 +1,44 @@
+@import './../../../styles/variables';
+
+.select--container {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+
+  .image--container {
+    width: 35px;
+    margin-right: 2px;
+  }
+
+  .icon--container {
+    margin-top: 5px;
+
+    .image {
+      width: 20px;
+      height: 20px;
+      fill: #5a6674;
+    }
+  }
+
+  .select-style {
+    margin: 0 5px;
+    border-radius: 3px;
+    overflow: hidden;
+
+    .currency {
+      width: 130%;
+      color: $colorPrimary;
+      border: none;
+      font-size: 1.2em;
+      box-shadow: none;
+      background: transparent;
+      background-image: none;
+      -webkit-appearance: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
