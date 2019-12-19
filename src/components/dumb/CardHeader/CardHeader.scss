@@ -18,6 +18,19 @@
     margin: auto 0;
   }
 
+  &.header {
+    width: 100%;
+    padding: 15px 15px 0px 15px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: left;
+
+    .icon--container {
+      max-width: 50px;
+    }
+
+  }
+
   &.operations {
     .text--container {
       h2 {
