@@ -2,6 +2,7 @@ import React, { FunctionComponent, Fragment } from 'react';
 
 import ScreenContainer from '../../containers/ScreenContainer/ScreenContainer';
 import HeaderContainer from '../../containers/HeaderContainer/HeaderContainer';
+import Menu from '../../smart/Menu/Menu';
 import CardHeader from '../../dumb/CardHeader/CardHeader';
 import Separator from '../../dumb/Separator/Separator';
 import Input from '../../dumb/Input/Input';
@@ -22,7 +23,8 @@ const Charge: FunctionComponent = () => {
         </div>
         <Separator className="medium" />
         <Button content="Confirm" onClick={() => console.log('click')} />
-        <Separator className="medium" />
+        <Separator />
+        <Menu />
       </ScreenContainer>
     </Fragment>
   );

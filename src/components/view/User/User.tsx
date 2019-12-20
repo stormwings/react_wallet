@@ -8,6 +8,7 @@ import CardHeader from '../../dumb/CardHeader/CardHeader';
 import IconProfile from '../../../assets/svg/name.svg';
 import HeaderContainer from '../../containers/HeaderContainer/HeaderContainer';
 import StatusHeader from '../../smart/StatusHeader/StatusHeader';
+import Menu from '../../smart/Menu/Menu';
 
 const User: FunctionComponent = () => {
   return (
@@ -33,6 +34,7 @@ const User: FunctionComponent = () => {
         <Separator className="medium" />
         <Button content="Save" onClick={() => console.log('click')} />
         <Separator className="medium" />
+        <Menu />
       </ScreenContainer>
     </Fragment>
   );

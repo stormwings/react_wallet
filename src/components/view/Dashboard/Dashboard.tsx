@@ -7,7 +7,7 @@ import CurrencyStatus from './../../../components/dumb/CurrencyStatus/CurrencySt
 import Separator from './../../../components/dumb/Separator/Separator';
 import StatusHeader from '../../smart/StatusHeader/StatusHeader';
 import ListItems from '../../smart/ListItems/ListItems';
-import IconList from '../../smart/IconList/IconList';
+import Menu from '../../smart/Menu/Menu';
 
 const Dashboard: FunctionComponent = () => {
   return (
@@ -22,7 +22,7 @@ const Dashboard: FunctionComponent = () => {
         <Separator className="medium" />
         <ListItems />
         <Separator />
-        <IconList />
+        <Menu />
       </ScreenContainer>
     </Fragment>
   );
