@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { useHistory } from 'react-router-dom';
 import './IconList.scss';
 
 import Icon from '../../dumb/Icon/Icon';
@@ -10,13 +11,15 @@ import IconTradingMoney from './../../../assets/svg/trading_money.svg';
 
 interface IProps {}
 
-const IconList: FunctionComponent<IProps> = props => {
+const IconList: FunctionComponent<IProps> = () => {
+  const history = useHistory();
+
   return (
     <div id="card--header__container">
-      <Icon image={IconCash} copy="Sell" onClick={() => console.log('onClick')} />
-      <Icon image={IconBitcoinPill} copy="Charge" onClick={() => console.log('onClick')} />
-      <Icon image={IconAdd} copy="Trading" onClick={() => console.log('onClick')} />
-      <Icon image={IconTradingMoney} copy="Buy" onClick={() => console.log('onClick')} />
+      <Icon image={IconCash} copy="Sell" onClick={() => history.push('/charge/sell_crypto')} />
+      <Icon image={IconBitcoinPill} copy="Buy" onClick={() => history.push('/charge/buy_crypto')} />
+      <Icon image={IconAdd} copy="Charge" onClick={() => history.push('/charge/buy_fiat')} />
+      <Icon image={IconTradingMoney} copy="Trading" onClick={() => history.push('/trading/list')} />
     </div>
   );
 };

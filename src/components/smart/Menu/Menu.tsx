@@ -18,7 +18,7 @@ const Menu: FunctionComponent<IProps> = () => {
     <div id="card--header__container">
       <Icon image={IconContact} copy="History" onClick={() => history.push('/history')} />
       <Icon image={IconWallet} copy="Wallet" onClick={() => history.push('/')} />
-      <Icon image={IconAdd} copy="Charge" onClick={() => history.push('/charge')} />
+      <Icon image={IconAdd} copy="Charge" onClick={() => history.push('/charge/buy_fiat')} />
       <Icon image={IconUser} copy="Profile" onClick={() => history.push('/user')} />
       <Icon image={IconLogout} copy="Logout" onClick={() => history.push('/logout')} />
     </div>
