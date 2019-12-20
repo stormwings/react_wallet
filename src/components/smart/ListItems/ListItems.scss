@@ -1,0 +1,34 @@
+@import "./../../../styles/variables";
+
+#transaction-row {
+  width: 100%;
+  display: flex;
+  margin-bottom: 15px;
+
+  .transaction-item {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+
+    &.elements {
+      align-items: flex-start
+    }
+
+    &.values {
+      align-items: flex-end;
+
+      @media screen and (min-width: $mobile-600) {
+        padding-right: 50px;
+      }
+
+      @media screen and (max-width: $mobile-600) {
+        padding-right: 30px;
+      }
+
+      @media screen and (max-width: $mobile-520) {
+        padding-right: 10px;
+      }
+    }
+  }
+
+}

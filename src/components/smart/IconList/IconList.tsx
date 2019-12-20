@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import './IconList.scss';
 
 import Icon from '../../dumb/Icon/Icon';
 
@@ -11,10 +12,7 @@ interface IProps {}
 
 const IconList: FunctionComponent<IProps> = props => {
   return (
-    <div
-      className="card--header__container"
-      style={{ width: '100%', display: 'flex', justifyContent: 'space-around', paddingBottom: '5px' }}
-    >
+    <div id="card--header__container">
       <Icon image={IconCash} copy="Sell" onClick={() => console.log('onClick')} />
       <Icon image={IconBitcoinPill} copy="Charge" onClick={() => console.log('onClick')} />
       <Icon image={IconAdd} copy="Trading" onClick={() => console.log('onClick')} />

@@ -2,9 +2,19 @@
 
 #container--screen {
   width: 92%;
+  padding-top: 10px;
+  margin-bottom: 10px;
   background-color: $colorWhite;
   display: flex;
   flex-direction: column;
   align-items: center;
   @include border-radius(22px);
+
+  &.hover {
+    margin-top: -80px !important;
+  }
+
+  .form--container {
+    width: 90%;
+  }
 }
