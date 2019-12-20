@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import './CardHeader.scss';
 import { Title, Subtitle } from '../Text/Text';
 
@@ -9,9 +9,9 @@ interface IProps {
   className?: string;
 }
 
-export const CardHeader = ({ content, subtitle, className, icon }: IProps) => {
+export const CardHeader: FunctionComponent<IProps> = ({ content, subtitle, className, icon }) => {
   return (
-    <div id="card-header--container" className={className}>
+    <div id="card-header--container" className={className ? className : ''}>
       {icon && (
         <div className="icon--container">
           <img className="icon" src={icon} alt="title" />

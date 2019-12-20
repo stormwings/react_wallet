@@ -14,9 +14,7 @@ const SpanList: FunctionComponent<IPropsContainer> = props => {
   return (
     <div id="span-list--container" className={componentClass}>
       <SpanElement content={content} />
-
       {contentSecondary && !onClickContentSecondary && <SpanElement content={contentSecondary} />}
-
       {contentSecondary && onClickContentSecondary && <SpanElementUrl content={contentSecondary} onClick={onClickContentSecondary} />}
     </div>
   );
@@ -29,7 +27,7 @@ interface IPropsElement {
 }
 export const SpanElement: FunctionComponent<IPropsElement> = props => {
   const { content } = props;
-  return <div className="span-list--content">{content}</div>;
+  return <div className="span-list--item">{content}</div>;
 };
 
 interface IPropsElementUrl {
@@ -44,7 +42,7 @@ export const SpanElementUrl: FunctionComponent<IPropsElementUrl> = props => {
   };
 
   return (
-    <div className="span-list--content--url" onClick={() => (onClick ? onClick() : defaultProps.onClick())}>
+    <div className="span-list--item url" onClick={() => (onClick ? onClick() : defaultProps.onClick())}>
       {content}
     </div>
   );

@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './Icon.scss';
 
-// example
-/* <Icon copy="Mariano" image={addIcon} onClick={() => console.log('Mariano')} /> */
-
 interface IProps {
   copy: string;
   image: string;

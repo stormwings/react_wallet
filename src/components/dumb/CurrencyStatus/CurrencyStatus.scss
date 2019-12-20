@@ -1,18 +1,11 @@
 @import "./../../../styles/variables";
 
 #currency-status {
-  // width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  max-width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 280px;
   cursor: pointer;
-
-  .principal {
-    margin: 3px 0;
-
-    &__span {
-      color: $colorWhite;
-    }
-  }
 }

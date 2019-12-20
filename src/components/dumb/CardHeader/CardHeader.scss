@@ -6,6 +6,7 @@
 
   .icon--container {
     width: 15%;
+    min-width: 35px;
     margin: auto 10px auto 10px;
 
     .icon {
@@ -47,8 +48,8 @@
   &.currency-status {
     .text--container {
       h2 {
-        color: $colorPrimary;
-        font-size: 15px;
+        color: $colorGray;
+        font-size: 13px;
       }
     }
 
@@ -58,10 +59,13 @@
   }
 
   &.text-big {
+    .icon--container {
+      min-width: 35px;
+    }
+
     .text--container {
       h2 {
         color: $colorPrimary;
-        // font-size: 20px;
       }
     }
   }

@@ -11,20 +11,16 @@
     text-transform: uppercase;
   }
 
-  .span-list--content {
+  .span-list--item {
     padding: 0 8%;
     width: 50%;
 
-  }
-
-  .span-list--content--url {
-    color: $colorPrimary;
-    padding: 0 5%;
-    text-align: right;
-    width: 50%;
-
-    text-transform: none;
-    text-decoration: none;
-    cursor: pointer;
+    &.url {
+      color: $colorPrimary;
+      text-align: right;
+      text-transform: none;
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
 }
