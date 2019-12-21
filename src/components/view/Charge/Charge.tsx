@@ -63,7 +63,7 @@ const Charge: FunctionComponent = () => {
   return (
     <Fragment>
       <HeaderContainer />
-      <StatusHeader />
+      <StatusHeader cryptoValue={myWallet.currency.BTC} fiatValue={myWallet.currency.USD} />
       <ScreenContainer>
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'contents' }}>
           <CardHeader content={ChargeOperation.title} subtitle={ChargeOperation.subtitle} icon={ChargeOperation.icon} className="header" />

@@ -1,4 +1,5 @@
 import React, { FunctionComponent, Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import './Dashboard.scss';
 
 import HeaderContainer from './../../../components/containers/HeaderContainer/HeaderContainer';
@@ -10,10 +11,12 @@ import ListItems from './../../smart/ListItems/ListItems';
 import Menu from './../../smart/Menu/Menu';
 
 const Dashboard: FunctionComponent = () => {
+  const myWallet = useSelector((state: any) => state.wallet);
+
   return (
     <Fragment>
       <HeaderContainer />
-      <StatusHeader />
+      <StatusHeader cryptoValue={myWallet.currency.BTC} fiatValue={myWallet.currency.USD} />
       <ScreenContainer>
         <div className="card--header__currencies">
           <CurrencyStatus principalValue="BTC 0,10458" secondaryValue="48.000,32ARS" principalIcon="bitcoin" />

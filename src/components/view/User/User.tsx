@@ -1,4 +1,5 @@
 import React, { FunctionComponent, Fragment } from 'react';
+import { useSelector } from 'react-redux';
 
 import ScreenContainer from './../../../components/containers/ScreenContainer/ScreenContainer';
 import Separator from './../../../components/dumb/Separator/Separator';
@@ -11,10 +12,12 @@ import StatusHeader from './../../smart/StatusHeader/StatusHeader';
 import Menu from './../../smart/Menu/Menu';
 
 const User: FunctionComponent = () => {
+  const myWallet = useSelector((state: any) => state.wallet);
+
   return (
     <Fragment>
       <HeaderContainer />
-      <StatusHeader />
+      <StatusHeader cryptoValue={myWallet.currency.BTC} fiatValue={myWallet.currency.USD} />
       <ScreenContainer>
         <CardHeader content="Settings" subtitle="Personal Information" icon={IconProfile} className="header" />
         <Separator className="medium" />

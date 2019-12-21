@@ -7,14 +7,19 @@ import ScreenContainer from './../../containers/ScreenContainer/ScreenContainer'
 import IconWallet from './../../../assets/svg/icon_wallet.svg';
 import IconList from './../IconList/IconList';
 
-interface IProps {}
+interface IProps {
+  cryptoValue: number;
+  fiatValue: number;
+}
 
 const StatusHeader: FunctionComponent<IProps> = props => {
+  const { cryptoValue, fiatValue } = props;
+
   return (
-    <ScreenContainer style={{ marginTop: '-80px' }}>
+    <ScreenContainer className="hover">
       <div className="card--header__container" style={{ display: 'flex' }}>
         <CardHeader content="My balance" subtitle="View Balance Details" icon={IconWallet} />
-        <CurrencyStatus principalValue="BTC 0,10458" secondaryValue="48.000,32ARS" principalIcon="bitcoin" />
+        <CurrencyStatus principalValue={`BTC ${cryptoValue}`} secondaryValue={`${fiatValue} USD`} principalIcon="bitcoin" />
       </div>
       <Separator />
       <IconList />
