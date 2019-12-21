@@ -2,13 +2,13 @@ import React, { FunctionComponent, Fragment } from 'react';
 
 import ScreenContainer from './../../../components/containers/ScreenContainer/ScreenContainer';
 import Separator from './../../../components/dumb/Separator/Separator';
-import Input from '../../dumb/Input/Input';
-import Button from '../../dumb/Button/Button';
-import CardHeader from '../../dumb/CardHeader/CardHeader';
-import IconProfile from '../../../assets/svg/name.svg';
-import HeaderContainer from '../../containers/HeaderContainer/HeaderContainer';
-import StatusHeader from '../../smart/StatusHeader/StatusHeader';
-import Menu from '../../smart/Menu/Menu';
+import Input from './../../dumb/Input/Input';
+import Button from './../../dumb/Button/Button';
+import CardHeader from './../../dumb/CardHeader/CardHeader';
+import IconProfile from './../../../assets/svg/name.svg';
+import HeaderContainer from './../../containers/HeaderContainer/HeaderContainer';
+import StatusHeader from './../../smart/StatusHeader/StatusHeader';
+import Menu from './../../smart/Menu/Menu';
 
 const User: FunctionComponent = () => {
   return (

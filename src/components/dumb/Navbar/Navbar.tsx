@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import './Navbar.scss';
-import ImageMenuIcon from '../../../assets/image/menu.png';
-import SvgUser from '../../../assets/components/SvgUser';
+import ImageMenuIcon from './../../../assets/image/menu.png';
+import SvgUser from './../../../assets/components/SvgUser';
 
 interface IProps {
   title: string;

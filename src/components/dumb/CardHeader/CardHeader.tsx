@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './CardHeader.scss';
-import { Title, Subtitle } from '../Text/Text';
+import { Title, Subtitle } from './../Text/Text';
 
 interface IProps {
   content?: string;

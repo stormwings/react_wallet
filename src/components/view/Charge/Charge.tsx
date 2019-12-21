@@ -2,17 +2,17 @@ import React, { FunctionComponent, Fragment, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useForm from 'react-hook-form';
 
-import ScreenContainer from '../../containers/ScreenContainer/ScreenContainer';
-import HeaderContainer from '../../containers/HeaderContainer/HeaderContainer';
-import Menu from '../../smart/Menu/Menu';
-import StatusHeader from '../../smart/StatusHeader/StatusHeader';
-import CardHeader from '../../dumb/CardHeader/CardHeader';
-import Separator from '../../dumb/Separator/Separator';
-import Input from '../../dumb/Input/Input';
-import Button from '../../dumb/Button/Button';
+import ScreenContainer from './../../containers/ScreenContainer/ScreenContainer';
+import HeaderContainer from './../../containers/HeaderContainer/HeaderContainer';
+import Menu from './../../smart/Menu/Menu';
+import StatusHeader from './../../smart/StatusHeader/StatusHeader';
+import CardHeader from './../../dumb/CardHeader/CardHeader';
+import Separator from './../../dumb/Separator/Separator';
+import Input from './../../dumb/Input/Input';
+import Button from './../../dumb/Button/Button';
 
-import { Operation, ResultOperation } from '../../../entities/Operation';
-import { Wallet } from '../../../entities/Wallet';
+import { Operation, ResultOperation } from './../../../entities/Operation';
+import { Wallet } from './../../../entities/Wallet';
 
 const Charge: FunctionComponent = () => {
   const { type }: any = useParams();
@@ -62,6 +62,7 @@ const Charge: FunctionComponent = () => {
               name="amount"
               labelText="Set an amount"
               error={error.error}
+              autoComplete={false}
               errorText={error.message}
               onChange={(value: number | string) => onChange(value)}
               inputRef={register}

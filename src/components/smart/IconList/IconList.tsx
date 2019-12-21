@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { useHistory } from 'react-router-dom';
 import './IconList.scss';
 
-import Icon from '../../dumb/Icon/Icon';
+import Icon from './../../dumb/Icon/Icon';
 
 import IconCash from './../../../assets/svg/cash_icon.svg';
 import IconBitcoinPill from './../../../assets/svg/bitcoin_pill.svg';

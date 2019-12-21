@@ -5,9 +5,9 @@ import HeaderContainer from './../../../components/containers/HeaderContainer/He
 import ScreenContainer from './../../../components/containers/ScreenContainer/ScreenContainer';
 import CurrencyStatus from './../../../components/dumb/CurrencyStatus/CurrencyStatus';
 import Separator from './../../../components/dumb/Separator/Separator';
-import StatusHeader from '../../smart/StatusHeader/StatusHeader';
-import ListItems from '../../smart/ListItems/ListItems';
-import Menu from '../../smart/Menu/Menu';
+import StatusHeader from './../../smart/StatusHeader/StatusHeader';
+import ListItems from './../../smart/ListItems/ListItems';
+import Menu from './../../smart/Menu/Menu';
 
 const Dashboard: FunctionComponent = () => {
   return (

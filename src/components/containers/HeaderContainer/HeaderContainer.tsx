@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './HeaderContainer.scss';
-import Navbar from '../../dumb/Navbar/Navbar';
+import Navbar from './../../dumb/Navbar/Navbar';
 
 const HeaderContainer: FunctionComponent = () => {
   return (

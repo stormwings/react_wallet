@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './CurrencyStatus.scss';
-import CardHeader from '../CardHeader/CardHeader';
+import CardHeader from './../CardHeader/CardHeader';
 
 import bitcoin from './../../../assets/svg/icon_bitcoin.svg';
 import ethereum from './../../../assets/svg/icon_ethereum.svg';
