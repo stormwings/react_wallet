@@ -17,14 +17,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchWallet, putWallet } from '../../../redux/actions/walletActions';
 
 const Charge: FunctionComponent = () => {
-  const { type }: any = useParams();
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  // initialize operation type
+  const { type }: any = useParams();
+  let ChargeOperation: Operation = new Operation(type);
   // form information handler
   const [newAmount, setAmount] = useState('Your new amount');
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState({ error: false, message: '' });
-  let ChargeOperation: Operation = new Operation(type);
   // sync with redux information
   const myWallet = useSelector((state: any) => state.wallet);
   let wallet: Wallet = new Wallet({ ...myWallet });

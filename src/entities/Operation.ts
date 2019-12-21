@@ -34,7 +34,7 @@ export class Operation {
         this.currencyStart = 'USD';
         this.currencyEnd = 'BTC';
         this.cryptoPrices = cryptoPrices;
-        this.validator = /^\s*-?[1-9]\d*(\.\d{1,5})?\s*$/;
+        this.validator = /^\s*-?[0-9]\d*(\.\d{1,5})?\s*$/;
         break;
       default:
         this.type = 'buy_fiat';

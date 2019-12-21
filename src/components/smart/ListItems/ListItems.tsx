@@ -4,35 +4,54 @@ import './ListItems.scss';
 import CardHeader from './../../../components/dumb/CardHeader/CardHeader';
 import SpanList from './../../../components/dumb/SpanList/SpanList';
 import Separator from './../../dumb/Separator/Separator';
-import IconWallet from './../../../assets/svg/icon_wallet.svg';
+import { ResultOperation, Operation } from '../../../entities/Operation';
 
-interface IProps {}
+interface IPropsList {
+  items: Array<ResultOperation>;
+}
+interface IPropsItem {
+  item: ResultOperation;
+}
 
-export const ItemRow = () => {
+export const ItemRow: FunctionComponent<IPropsItem> = props => {
+  const {
+    item: { type, currencyEnd, currencyStart, date, ingressAmount, substractionAmount }
+  } = props;
+
+  const operation: Operation = new Operation(type);
+
   return (
     <div id="transaction-row">
       <div className="transaction-item elements">
-        <CardHeader content="Buy Bitcoins" subtitle="14 Dec 2019, 3:40 PM" icon={IconWallet} />
+        <CardHeader content={operation.title} subtitle={date} icon={operation.icon} />
       </div>
       <div className="transaction-item values">
-        <CardHeader content="+$3415" subtitle="-BTC0,35415" className="operations" />
+        <CardHeader
+          content={`+ ${currencyEnd} ${ingressAmount}`}
+          subtitle={`- ${currencyStart ? currencyStart : 'Cash'} ${substractionAmount}`}
+          className="operations"
+        />
       </div>
     </div>
   );
 };
 
-const ListItems: FunctionComponent<IProps> = props => {
+const ListItems: FunctionComponent<IPropsList> = props => {
+  const { items } = props;
+
   return (
     <Fragment>
       <SpanList
-        content="Today"
+        content="Last"
         className="capital-letters"
         contentSecondary="See all"
         onClickContentSecondary={() => console.log('onClick')}
       />
       <Separator className="empty" />
-      <ItemRow />
-      <ItemRow />
+
+      {items.map((item, i) => (
+        <ItemRow key={i} item={item} />
+      ))}
     </Fragment>
   );
 };
