@@ -53,32 +53,37 @@ export class Wallet {
         const btcToBuy = parseFloat(operationResult.ingressAmount);
 
         if (usdToSell <= this.currency.USD) {
-          this.currency.USD -= usdToSell;
-          this.currency.BTC += btcToBuy;
+          this.currency.USD = parseFloat((this.currency.USD - usdToSell).toFixed(2));
+          this.currency.BTC = parseFloat((this.currency.BTC + btcToBuy).toFixed(5));
 
           let newOperationsArray = [operationResult, ...this.operations];
           this.operations = newOperationsArray;
+          return true;
+        } else {
+          return false;
         }
-        break;
       case 'sell_crypto':
         const btcToSell = parseFloat(operationResult.substractionAmount);
         const usdToBuy = parseFloat(operationResult.ingressAmount);
 
         if (btcToSell <= this.currency.BTC) {
-          this.currency.BTC -= btcToSell;
-          this.currency.USD += usdToBuy;
+          this.currency.BTC = parseFloat((this.currency.BTC - btcToSell).toFixed(5));
+          this.currency.USD = parseFloat((this.currency.USD + usdToBuy).toFixed(2));
 
           let newOperationsArray = [operationResult, ...this.operations];
           this.operations = newOperationsArray;
+          return true;
+        } else {
+          return false;
         }
-        break;
       case 'buy_fiat':
       default:
         const usdToCharge = parseFloat(operationResult.ingressAmount);
-        this.currency.USD += usdToCharge;
+        this.currency.USD = parseFloat((this.currency.USD + usdToCharge).toFixed(2));
+
         let newOperationsArray = [operationResult, ...this.operations];
         this.operations = newOperationsArray;
-        break;
+        return true;
     }
   }
 }

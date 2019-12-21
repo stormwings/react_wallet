@@ -23,12 +23,15 @@ const Charge: FunctionComponent = () => {
   // form information handler
   const [newAmount, setAmount] = useState('Your new amount');
   const [disabled, setDisabled] = useState(true);
+  const [error, setError] = useState({ error: false, message: '' });
 
   const onSubmit = (values: any) => {
     values.finalAmount = newAmount;
     // create Operation and send to backend
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
-    wallet.newOperation(result);
+    const success = wallet.newOperation(result);
+    // error handler
+    success ? setError({ error: false, message: '' }) : setError({ error: true, message: 'Insufficient funds' });
     console.log(wallet); // new wallet value
   };
 
@@ -55,7 +58,14 @@ const Charge: FunctionComponent = () => {
           <CardHeader content={ChargeOperation.title} subtitle={ChargeOperation.subtitle} icon={ChargeOperation.icon} className="header" />
           <Separator className="medium" />
           <div className="form--container">
-            <Input name="amount" labelText="Set an amount" onChange={(value: number | string) => onChange(value)} inputRef={register} />
+            <Input
+              name="amount"
+              labelText="Set an amount"
+              error={error.error}
+              errorText={error.message}
+              onChange={(value: number | string) => onChange(value)}
+              inputRef={register}
+            />
             <Separator className="empty" />
             <Input name="finalAmount" labelText="Your charge" placeholder={newAmount} disabled inputRef={register} />
           </div>
