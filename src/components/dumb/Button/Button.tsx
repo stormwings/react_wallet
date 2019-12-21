@@ -3,14 +3,15 @@ import './Button.scss';
 
 interface IProps {
   content: string;
-  onClick: Function;
+  disabled?: boolean;
+  onClick?: Function;
 }
 
 const Button: FunctionComponent<IProps> = props => {
-  const { content, onClick } = props;
+  const { content, disabled, onClick } = props;
   return (
     <div id="button--container">
-      <button className="button" onClick={() => (onClick ? onClick() : defaultProps.onClick())}>
+      <button className="button" disabled={disabled ? true : false} onClick={() => (onClick ? onClick() : defaultProps.onClick())}>
         {content}
       </button>
     </div>
@@ -18,7 +19,9 @@ const Button: FunctionComponent<IProps> = props => {
 };
 
 const defaultProps = {
-  onClick: () => console.log('onClick empty')
+  onClick: () => {
+    return;
+  }
 };
 
 export default Button;

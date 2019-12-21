@@ -5,18 +5,33 @@ interface IProps {
   name: string;
   labelText: string;
   onChange?: any;
+  inputRef?: any;
   type?: string;
   error?: boolean;
   disabled?: boolean;
   errorText?: string;
+  pattern?: string;
   className?: string;
-  defaultValue?: string;
+  defaultValue?: any;
   autoComplete?: boolean;
   placeholder?: string;
 }
 
 const Input: FunctionComponent<IProps> = props => {
-  const { name, disabled, placeholder, defaultValue, autoComplete, error, errorText, labelText, className } = props;
+  const {
+    name,
+    disabled,
+    placeholder,
+    defaultValue,
+    autoComplete,
+    error,
+    errorText,
+    labelText,
+    className,
+    inputRef,
+    onChange,
+    pattern
+  } = props;
 
   // updates
   const [type, setType] = useState(props.type ? props.type : 'text');
@@ -35,7 +50,12 @@ const Input: FunctionComponent<IProps> = props => {
         type={type}
         value={value}
         name={name}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => updateValue(e.target.value)}
+        ref={inputRef}
+        pattern={pattern ? pattern : undefined}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          onChange(e.target.value);
+          updateValue(e.target.value);
+        }}
         className={error ? 'input error' : 'input'}
         disabled={disabled}
         placeholder={placeholder}
