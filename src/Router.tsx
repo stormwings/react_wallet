@@ -15,7 +15,7 @@ const Router: FunctionComponent<BrowserRouterProps> = () => {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/auth/:type" component={Auth} />
-            <Route exact path="/charge/:currency" component={Charge} />
+            <Route exact path="/charge/:type" component={Charge} />
             <Route exact path="/trading/:operation" component={Charge} />
             <Route exact path="/history" component={History} />
             <Route exact path="/user" component={User} />
