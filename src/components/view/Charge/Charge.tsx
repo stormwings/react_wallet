@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment, useState } from 'react';
+import React, { FunctionComponent, Fragment, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useForm from 'react-hook-form';
 
@@ -13,12 +13,23 @@ import Button from './../../dumb/Button/Button';
 
 import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Wallet } from './../../../entities/Wallet';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchWallet, putWallet } from '../../../redux/actions/walletActions';
 
 const Charge: FunctionComponent = () => {
   const { type }: any = useParams();
   const { register, handleSubmit } = useForm();
   let ChargeOperation: Operation = new Operation(type);
-  let wallet: Wallet = new Wallet();
+  let wallet: Wallet;
+
+  const myWallet = useSelector((state: any) => state.wallet);
+  wallet = new Wallet({ ...myWallet });
+
+  // get user's wallet
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchWallet());
+  }, []);
 
   // form information handler
   const [newAmount, setAmount] = useState('Your new amount');
@@ -32,7 +43,10 @@ const Charge: FunctionComponent = () => {
     const success = wallet.newOperation(result);
     // error handler
     success ? setError({ error: false, message: '' }) : setError({ error: true, message: 'Insufficient funds' });
-    console.log(wallet); // new wallet value
+    if (error.error === false) {
+      // dispath action update
+      dispatch(putWallet({ ...wallet })); // new wallet value
+    }
   };
 
   const onChange = (e: any) => {

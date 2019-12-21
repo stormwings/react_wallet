@@ -15,35 +15,10 @@ export class Wallet {
   public currency: WalletCurrency;
   public operations: Array<ResultOperation>;
 
-  constructor() {
-    this.userId = 1;
-    this.currency = new WalletCurrency(0.12231, 450);
-    this.operations = [
-      {
-        type: 'buy_fiat',
-        date: '11/5/2019,21:57',
-        currencyStart: null,
-        currencyEnd: 'USD',
-        substractionAmount: 150,
-        ingressAmount: 150
-      },
-      {
-        type: 'buy_fiat',
-        date: '11/5/2019,21:57',
-        currencyStart: null,
-        currencyEnd: 'USD',
-        substractionAmount: 150,
-        ingressAmount: 150
-      },
-      {
-        type: 'buy_fiat',
-        date: '11/5/2019,21:57',
-        currencyStart: null,
-        currencyEnd: 'USD',
-        substractionAmount: 150,
-        ingressAmount: 150
-      }
-    ];
+  constructor(wallet: any) {
+    this.userId = wallet.userId;
+    this.currency = new WalletCurrency(wallet.currency.BTC, wallet.currency.USD);
+    this.operations = [...wallet.operations];
   }
 
   public newOperation(operationResult: any) {
