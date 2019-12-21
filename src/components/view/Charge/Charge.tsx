@@ -43,10 +43,8 @@ const Charge: FunctionComponent = () => {
     const success = wallet.newOperation(result);
     // error handler
     success ? setError({ error: false, message: '' }) : setError({ error: true, message: 'Insufficient funds' });
-    if (error.error === false) {
-      // dispath action update
-      dispatch(putWallet({ ...wallet })); // new wallet value
-    }
+    // dispath action update
+    dispatch(putWallet({ ...wallet })); // new wallet value
   };
 
   const onChange = (e: any) => {
