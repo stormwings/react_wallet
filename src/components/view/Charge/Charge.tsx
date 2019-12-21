@@ -19,43 +19,42 @@ import { fetchWallet, putWallet } from '../../../redux/actions/walletActions';
 const Charge: FunctionComponent = () => {
   const { type }: any = useParams();
   const { register, handleSubmit } = useForm();
-  let ChargeOperation: Operation = new Operation(type);
-  let wallet: Wallet;
-
-  const myWallet = useSelector((state: any) => state.wallet);
-  wallet = new Wallet({ ...myWallet });
-
-  // get user's wallet
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchWallet());
-  }, []);
-
   // form information handler
   const [newAmount, setAmount] = useState('Your new amount');
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState({ error: false, message: '' });
+  let ChargeOperation: Operation = new Operation(type);
+  // sync with redux information
+  const myWallet = useSelector((state: any) => state.wallet);
+  let wallet: Wallet = new Wallet({ ...myWallet });
+  // get user's wallet from api
+  useEffect(() => {
+    dispatch(fetchWallet());
+  }, []);
 
   const onSubmit = (values: any) => {
     values.finalAmount = newAmount;
-    // create Operation and send to backend
+    // create Operation to send to backend
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
     const success = wallet.newOperation(result);
-    // error handler
-    success ? setError({ error: false, message: '' }) : setError({ error: true, message: 'Insufficient funds' });
-    // dispath action update
-    dispatch(putWallet({ ...wallet })); // new wallet value
+    if (success) {
+      setError({ error: false, message: '' });
+      dispatch(putWallet({ ...wallet })); // new wallet value
+    } else {
+      setError({ error: true, message: 'Insufficient funds' });
+    }
   };
 
   const onChange = (e: any) => {
     if (ChargeOperation.validator.test(e)) {
-      // update amount
+      // enable form to submit
       setDisabled(false);
-      // transform to selected currency
+      // transform to selected currency and set
       const valueInNewCurrency: any = ChargeOperation.transformCurrency(e);
       setAmount(valueInNewCurrency);
     } else {
-      // block submit
+      // block submit form
       setDisabled(true);
       setAmount('Invalid amount');
     }
