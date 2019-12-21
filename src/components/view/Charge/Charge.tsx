@@ -11,13 +11,14 @@ import Separator from '../../dumb/Separator/Separator';
 import Input from '../../dumb/Input/Input';
 import Button from '../../dumb/Button/Button';
 
-import { Operation } from '../../../entities/Operation';
+import { Operation, ResultOperation } from '../../../entities/Operation';
 import { Wallet } from '../../../entities/Wallet';
 
 const Charge: FunctionComponent = () => {
   const { type }: any = useParams();
   const { register, handleSubmit } = useForm();
   let ChargeOperation: Operation = new Operation(type);
+  let wallet: Wallet = new Wallet();
 
   // form information handler
   const [newAmount, setAmount] = useState('Your new amount');
@@ -26,7 +27,9 @@ const Charge: FunctionComponent = () => {
   const onSubmit = (values: any) => {
     values.finalAmount = newAmount;
     // create Operation and send to backend
-    console.log(ChargeOperation.createOperation(values.amount, values.finalAmount));
+    let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
+    wallet.newOperation(result);
+    console.log(wallet); // new wallet value
   };
 
   const onChange = (e: any) => {

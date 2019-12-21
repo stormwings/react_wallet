@@ -56,6 +56,8 @@ export class Operation {
       case 'USD':
         if (this.currencyStart) {
           return (parseFloat(amount) * this.cryptoPrices.BTC).toFixed(2);
+        } else {
+          return amount;
         }
       default:
         return amount;
@@ -75,4 +77,13 @@ export class Operation {
       ingressAmount: resultAmount
     };
   }
+}
+
+export interface ResultOperation {
+  type: string;
+  date?: string;
+  currencyStart?: string | null;
+  currencyEnd?: string;
+  substractionAmount?: string | number;
+  ingressAmount?: string | number;
 }
