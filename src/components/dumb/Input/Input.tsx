@@ -15,6 +15,7 @@ interface IProps {
   defaultValue?: any;
   autoComplete?: boolean;
   placeholder?: string;
+  required?: boolean;
 }
 
 const Input: FunctionComponent<IProps> = props => {
@@ -30,7 +31,8 @@ const Input: FunctionComponent<IProps> = props => {
     className,
     inputRef,
     onChange,
-    pattern
+    pattern,
+    required
   } = props;
 
   // updates
@@ -59,6 +61,7 @@ const Input: FunctionComponent<IProps> = props => {
         className={error ? 'input error' : 'input'}
         disabled={disabled}
         placeholder={placeholder}
+        required={required ? true : false}
         autoComplete={autoComplete === false ? 'off' : ''}
       />
       <InputLabel />

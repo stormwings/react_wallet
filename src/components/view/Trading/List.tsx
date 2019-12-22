@@ -23,7 +23,6 @@ const TradingList: FunctionComponent = () => {
   }, []);
 
   const lastItems = myWallet.tradings;
-  console.log(lastItems);
 
   return (
     <Fragment>
@@ -33,7 +32,7 @@ const TradingList: FunctionComponent = () => {
         <div style={{ width: '95%', display: 'flex' }}>
           <CardHeader content="User Trading" subtitle="Click to buy" icon={IconTradingMoney} className="header" />
           <div className="card--header__currencies" style={{ width: '200px', display: 'flex', alignItems: 'center' }}>
-            <Button content="Publish" />
+            <Button content="Publish" onClick={() => history.push('/trading/publish')} />
           </div>
         </div>
         <Separator className="medium" />
