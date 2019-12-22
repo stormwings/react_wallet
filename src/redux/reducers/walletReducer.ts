@@ -7,25 +7,28 @@ const INITIAL_STATE = {
     BTC: 0,
     USD: 0
   } as CurrencyPrice,
-  operations: [] as Array<ResultOperation>
+  operations: [] as Array<ResultOperation>,
+  tradings: [] as Array<any>
 };
 
 export default function(state = INITIAL_STATE, action: any) {
   switch (action.type) {
     case 'WALLET_LOAD': {
-      const { currency, operations, userId } = action.payload;
+      const { currency, operations, userId, tradings } = action.payload;
       return {
         currency,
         operations,
-        userId
+        userId,
+        tradings
       };
     }
     case 'WALLET_UPDATE': {
-      const { currency, operations, userId } = action.payload;
+      const { currency, operations, userId, tradings } = action.payload;
       return {
         currency,
         operations,
-        userId
+        userId,
+        tradings
       };
     }
     default:

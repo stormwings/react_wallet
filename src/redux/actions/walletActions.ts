@@ -9,10 +9,10 @@ export const fetchWallet = () => async (dispatch: any) => {
   dispatch(walletLoading());
   try {
     const {
-      data: { currency, operations, userId }
+      data: { currency, operations, userId, tradings }
     } = await Axios.get('http://localhost:3001/wallet');
 
-    dispatch(loadWallet({ currency, operations, userId }));
+    dispatch(loadWallet({ currency, operations, userId, tradings }));
   } catch (error) {
     const { message } = error;
     dispatch(errorWallet({ message_error: message }));
@@ -23,10 +23,10 @@ export const putWallet = (wallet: any) => async (dispatch: any) => {
   dispatch(walletLoading());
   try {
     const {
-      data: { currency, operations, userId }
+      data: { currency, operations, userId, tradings }
     } = await Axios.put('http://localhost:3001/wallet', { ...wallet });
 
-    dispatch(updateWallet({ currency, operations, userId }));
+    dispatch(updateWallet({ currency, operations, userId, tradings }));
   } catch (error) {
     const { message } = error;
     dispatch(errorWallet({ message_error: message }));
