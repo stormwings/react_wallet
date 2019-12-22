@@ -57,6 +57,16 @@ export class Operation {
         this.cryptoPrices = cryptoPrices;
         this.validator = /^\s*-?[0-9]\d*(\.\d{1,5})?\s*$/;
         break;
+      case 'trading_publish':
+        this.type = type;
+        this.title = 'Publish';
+        this.subtitle = 'Create Trading';
+        this.icon = IconTradingMoney;
+        this.currencyStart = 'BTC';
+        this.currencyEnd = 'USD';
+        this.cryptoPrices = cryptoPrices;
+        this.validator = /^\s*-?[0-9]\d*(\.\d{1,5})?\s*$/;
+        break;
       default:
         this.type = 'buy_fiat';
         this.title = 'Charge balance';
@@ -106,6 +116,6 @@ export interface ResultOperation {
   date?: string;
   currencyStart?: string | null;
   currencyEnd?: string;
-  substractionAmount?: string | number;
-  ingressAmount?: string | number;
+  substractionAmount?: string | number | null;
+  ingressAmount?: string | number | null;
 }

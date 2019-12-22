@@ -1,4 +1,5 @@
 import { ResultOperation } from './Operation';
+import { Trading } from './Trading';
 
 export class WalletCurrency {
   public BTC: number;
@@ -70,6 +71,20 @@ export class Wallet {
           return false;
         }
       }
+      case 'trading_publish': {
+        const btcPrice = parseFloat(operationResult.ingressAmount);
+        const btcToSell = parseFloat(operationResult.substractionAmount);
+
+        if (btcToSell <= this.currency.BTC) {
+          this.currency.BTC = parseFloat((this.currency.BTC - btcToSell).toFixed(5));
+
+          let newOperationsArray = [operationResult, ...this.operations];
+          this.operations = newOperationsArray;
+          return true;
+        } else {
+          return false;
+        }
+      }
       case 'buy_fiat':
       default: {
         const usdToCharge = parseFloat(operationResult.ingressAmount);
@@ -80,6 +95,11 @@ export class Wallet {
         return true;
       }
     }
+  }
+
+  public createTrading(trading: Trading) {
+    let newTradingsArray = [trading, ...this.tradings];
+    this.tradings = newTradingsArray;
   }
 
   public removeTrading(id: number) {
