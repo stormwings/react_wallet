@@ -1,6 +1,7 @@
 import IconBitcoinPill from './../assets/svg/bitcoin_pill.svg';
 import IconCash from './../assets/svg/cash_icon.svg';
 import IconAdd from './../assets/svg/add.svg';
+import IconTradingMoney from './../assets/svg/trading_money.svg';
 import CurrencyPrice from './CurrencyPrice';
 
 export class Operation {
@@ -31,6 +32,26 @@ export class Operation {
         this.title = 'Buy bitcoin';
         this.subtitle = 'Charge BTC Account';
         this.icon = IconBitcoinPill;
+        this.currencyStart = 'USD';
+        this.currencyEnd = 'BTC';
+        this.cryptoPrices = cryptoPrices;
+        this.validator = /^\s*-?[0-9]\d*(\.\d{1,5})?\s*$/;
+        break;
+      case 'trading_list':
+        this.type = type;
+        this.title = 'Trade Bitcoin';
+        this.subtitle = 'Charge BTC Account';
+        this.icon = IconBitcoinPill;
+        this.currencyStart = 'USD';
+        this.currencyEnd = 'BTC';
+        this.cryptoPrices = cryptoPrices;
+        this.validator = /^\s*-?[0-9]\d*(\.\d{1,5})?\s*$/;
+        break;
+      case 'trading_buy':
+        this.type = type;
+        this.title = 'Trade Bitcoin';
+        this.subtitle = 'Charge BTC Account';
+        this.icon = IconTradingMoney;
         this.currencyStart = 'USD';
         this.currencyEnd = 'BTC';
         this.cryptoPrices = cryptoPrices;
@@ -80,6 +101,7 @@ export class Operation {
 }
 
 export interface ResultOperation {
+  id?: any;
   type: string;
   date?: string;
   currencyStart?: string | null;
