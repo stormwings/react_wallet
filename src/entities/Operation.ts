@@ -73,7 +73,7 @@ export class Operation {
         this.subtitle = 'Finish Trading';
         this.icon = IconTradingMoney;
         this.currencyStart = null;
-        this.currencyEnd = 'BTC';
+        this.currencyEnd = 'USD';
         this.cryptoPrices = cryptoPrices;
         this.validator = /^\s*-?[0-9]\d*(\.\d{1,5})?\s*$/;
         break;
