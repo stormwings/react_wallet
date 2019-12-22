@@ -1,0 +1,11 @@
+{
+  "wallet": {
+    "userId": 1,
+    "currency": {
+      "BTC": 0,
+      "USD": 0
+    },
+    "operations": [],
+    "tradings": []
+  }
+}
