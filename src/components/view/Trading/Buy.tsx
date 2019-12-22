@@ -29,7 +29,8 @@ const TradingBuy: FunctionComponent = () => {
   // sync with redux information
   const myWallet = useSelector((state: any) => state.wallet);
   // get trading and set
-  const trading = myWallet.tradings.find((item: any) => item.id === id);
+  const trading = myWallet.tradings.find((item: any) => item.id == id);
+  // console.log(myWallet.tradings[0]);
   let wallet: Wallet = new Wallet({ ...myWallet });
   // get user's wallet from api
   useEffect(() => {
@@ -44,6 +45,14 @@ const TradingBuy: FunctionComponent = () => {
     if (success && myWallet.currency.USD >= trading.substractionAmount) {
       setError({ error: false, message: '' });
       dispatch(putWallet({ ...wallet })); // new wallet value
+
+      // send payment
+      let ChargeOperation: Operation = new Operation('trading_finish');
+      let result: ResultOperation = ChargeOperation.createOperation(values.finalAmount, values.amount);
+      wallet.newOperation(result);
+      dispatch(putWallet({ ...wallet }));
+
+      // redirect
       history.push('/trading/list');
     } else {
       setError({ error: true, message: 'Insufficient funds' });

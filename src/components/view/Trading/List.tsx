@@ -22,8 +22,6 @@ const TradingList: FunctionComponent = () => {
     dispatch(fetchWallet());
   }, []);
 
-  const lastItems = myWallet.tradings;
-
   return (
     <Fragment>
       <HeaderContainer />
@@ -36,7 +34,7 @@ const TradingList: FunctionComponent = () => {
           </div>
         </div>
         <Separator className="medium" />
-        <ListItems items={lastItems} onClick={(element: any) => history.push(`/trading/buy/${element}`)} noSpan />
+        <ListItems items={myWallet.tradings} onClick={(element: any) => history.push(`/trading/buy/${element}`)} noSpan />
         <Separator />
         <Menu />
       </ScreenContainer>

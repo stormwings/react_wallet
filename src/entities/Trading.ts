@@ -1,4 +1,6 @@
 export class Trading {
+  public id: number | string;
+  public publisher: number | string;
   public currencyStart: string | null;
   public currencyEnd: string | null;
   public type: string;
@@ -7,11 +9,13 @@ export class Trading {
   public ingressAmount: string;
 
   constructor(currency: any) {
-    this.currencyStart = currency.currencyStart;
-    this.currencyEnd = currency.currencyEnd;
+    this.id = Date.now();
+    this.publisher = 3;
     this.type = currency.type;
     this.date = currency.date;
     // changeds because its a buy
+    this.currencyStart = currency.currencyEnd;
+    this.currencyEnd = currency.currencyStart;
     this.substractionAmount = currency.ingressAmount;
     this.ingressAmount = currency.substractionAmount;
   }

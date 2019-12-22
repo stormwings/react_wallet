@@ -34,7 +34,7 @@ const TradingPublish: FunctionComponent = () => {
 
   const onSubmit = (values: any) => {
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
-    result.ingressAmount = null;
+    // result.ingressAmount = null;
     const success = wallet.newOperation(result);
     if (success) {
       setAmountError({ error: false, message: '' });

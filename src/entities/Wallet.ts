@@ -85,6 +85,14 @@ export class Wallet {
           return false;
         }
       }
+      case 'trading_finish': {
+        const usdToCharge = parseFloat(operationResult.ingressAmount);
+        this.currency.USD = parseFloat((this.currency.USD + usdToCharge).toFixed(2));
+
+        let newOperationsArray = [operationResult, ...this.operations];
+        this.operations = newOperationsArray;
+        return true;
+      }
       case 'buy_fiat':
       default: {
         const usdToCharge = parseFloat(operationResult.ingressAmount);
