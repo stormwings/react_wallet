@@ -49,9 +49,11 @@ const ListItems: FunctionComponent<IPropsList> = props => {
       />
       <Separator className="empty" />
 
-      {items.map((item, i) => (
-        <ItemRow key={i} item={item} />
-      ))}
+      <div style={{ maxHeight: '350px', overflowY: 'scroll', width: '100%' }}>
+        {items.map((item, i) => (
+          <ItemRow key={i} item={item} />
+        ))}
+      </div>
     </Fragment>
   );
 };
