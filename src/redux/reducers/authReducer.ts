@@ -10,7 +10,9 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action: any) {
   switch (action.type) {
     case types.AUTH_LOGIN: {
-      const { data: key } = action.payload;
+      const {
+        data: { key }
+      } = action.payload;
 
       return {
         ...state,
