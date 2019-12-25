@@ -55,7 +55,7 @@ const Input: FunctionComponent<IProps> = props => {
         ref={inputRef}
         pattern={pattern ? pattern : undefined}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          onChange(e.target.value);
+          onChange && onChange(e.target.value);
           updateValue(e.target.value);
         }}
         className={error ? 'input error' : 'input'}
