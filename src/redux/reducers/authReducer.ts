@@ -4,19 +4,21 @@ const INITIAL_STATE = {
   loading: false,
   message: '' as string,
   error: '' as string,
-  key: '' as string
+  key: '' as string,
+  user_id: '' as string
 };
 
 export default function(state = INITIAL_STATE, action: any) {
   switch (action.type) {
     case types.AUTH_LOGIN: {
       const {
-        data: { key }
+        data: { key, user }
       } = action.payload;
 
       return {
         ...state,
         key,
+        user_id: user,
         error: '',
         message: 'Successful authentication',
         loading: false

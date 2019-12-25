@@ -106,6 +106,10 @@ REST_FRAMEWORK = {
     ]
 }
 
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'app.serializers.TokenSerializer',
+}
+
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
