@@ -38,7 +38,7 @@ class TradingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trading
         fields = ('id', 'currencyStart', 'currencyEnd', 'trading_type',
-                  'date', 'substractionAmount', 'ingressAmount', 'user')
+                  'date', 'substractionAmount', 'ingressAmount', 'publisher')
 
 
 class WalletSerializer(serializers.ModelSerializer):

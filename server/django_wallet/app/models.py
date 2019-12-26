@@ -22,7 +22,7 @@ class Trading(models.Model):
     date = models.CharField(max_length=100, default='')
     substractionAmount = models.FloatField(default=0)
     ingressAmount = models.FloatField(default=0)
-    user = models.ForeignKey(
+    publisher = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True)
 
 
