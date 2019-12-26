@@ -23,24 +23,6 @@ const Auth: FunctionComponent = () => {
     dispatch(type === 'login' ? authSignIn(values) : authSignUp(values));
   };
 
-  const RegisterInputs = () => (
-    <Fragment>
-      <Input name="username" labelText="Username" inputRef={register} required autoComplete={false} />
-      <Separator className="empty" />
-      <Input name="password1" labelText="Password" type="password" inputRef={register} required autoComplete={false} />
-      <Separator className="empty" />
-      <Input name="password2" labelText="Confirm password" type="password" inputRef={register} required autoComplete={false} />
-    </Fragment>
-  );
-
-  const LoginInputs = () => (
-    <Fragment>
-      <Input name="username" labelText="Username" inputRef={register} required autoComplete={false} />
-      <Separator className="empty" />
-      <Input name="password" labelText="Password" type="password" inputRef={register} required autoComplete={false} />
-    </Fragment>
-  );
-
   // check authentication successful
   if (key) return <Redirect to={'/'} />;
 
@@ -57,15 +39,17 @@ const Auth: FunctionComponent = () => {
             {/* error messages */}
             {errors && (
               <p className="option">
-                {errors.map((error: string) => (
-                  <i className="red">{error}</i>
+                {errors.map((error: string, i: number) => (
+                  <i key={i} className="red">
+                    {error}
+                  </i>
                 ))}
               </p>
             )}
             <div className="form--container">
               {/* generate the inputs depending the router */}
-              {type === 'register' && <RegisterInputs />}
-              {type === 'login' && <LoginInputs />}
+              {type === 'register' && <RegisterInputs bind={register} />}
+              {type === 'login' && <LoginInputs bind={register} />}
             </div>
             <Separator className="empty" />
             <Button content="Confirm" onClick={() => console.log('click')} />
@@ -94,3 +78,29 @@ const Auth: FunctionComponent = () => {
 };
 
 export default Auth;
+
+interface IProps {
+  bind: Function;
+}
+
+const RegisterInputs: FunctionComponent<IProps> = props => {
+  return (
+    <Fragment>
+      <Input name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
+      <Separator className="empty" />
+      <Input name="password1" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
+      <Separator className="empty" />
+      <Input name="password2" labelText="Confirm password" type="password" inputRef={props.bind} required autoComplete={false} />
+    </Fragment>
+  );
+};
+
+const LoginInputs: FunctionComponent<IProps> = props => {
+  return (
+    <Fragment>
+      <Input name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
+      <Separator className="empty" />
+      <Input name="password" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
+    </Fragment>
+  );
+};

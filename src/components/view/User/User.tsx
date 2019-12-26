@@ -37,15 +37,15 @@ const User: FunctionComponent = () => {
           <CardHeader content="Settings" subtitle="Personal Information" icon={IconProfile} className="header" />
           <Separator className="medium" />
           <div className="form--container">
-            <Input name="name" labelText="Full name" defaultValue={profile.name} inputRef={register} />
+            <Input name="name" labelText="Full name" defaultValue={profile.name} inputRef={register} required />
           </div>
           <Separator className="medium" />
           <div className="form--container">
-            <Input name="phone" labelText="Phone number" defaultValue={profile.phone} inputRef={register} />
+            <Input name="phone" labelText="Phone number" defaultValue={profile.phone} inputRef={register} required />
             <Separator className="empty" />
-            <Input name="location" labelText="Country, Province" defaultValue={profile.location} inputRef={register} />
+            <Input name="location" labelText="Country, Province" defaultValue={profile.location} inputRef={register} required />
             <Separator className="empty" />
-            <Input name="address" labelText="Your address" defaultValue={profile.address} inputRef={register} />
+            <Input name="address" labelText="Your address" defaultValue={profile.address} inputRef={register} required />
           </div>
           <Separator className="medium" />
           <Button content="Save" onClick={() => console.log('click')} />
