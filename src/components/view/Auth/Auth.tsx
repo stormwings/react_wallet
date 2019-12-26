@@ -46,6 +46,8 @@ const Auth: FunctionComponent = () => {
                 ))}
               </p>
             )}
+            {/* login helper account */}
+            {type === 'login' && <p className="option">example => user: testing pass: testing63 </p>}
             <div className="form--container">
               {/* generate the inputs depending the router */}
               {type === 'register' && <RegisterInputs bind={register} />}
