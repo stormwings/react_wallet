@@ -1,5 +1,6 @@
 import React, { FunctionComponent, Fragment, useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import useForm from 'react-hook-form';
 
 import ScreenContainer from './../../containers/ScreenContainer/ScreenContainer';
@@ -10,10 +11,8 @@ import CardHeader from './../../dumb/CardHeader/CardHeader';
 import Separator from './../../dumb/Separator/Separator';
 import Input from './../../dumb/Input/Input';
 import Button from './../../dumb/Button/Button';
-
 import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Wallet } from './../../../entities/Wallet';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchWallet,
   updateCurrency,
@@ -49,7 +48,6 @@ const TradingBuy: FunctionComponent = () => {
   const onSubmit = (values: any) => {
     // create Operation to send to backend
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
-    // wallet.removeTrading(trading.id);
     const operation: any = wallet.newOperation(result, user_id);
     if (operation && myWallet.currency.USD >= trading.substractionAmount) {
       setError({ error: false, message: '' });
@@ -58,8 +56,8 @@ const TradingBuy: FunctionComponent = () => {
       dispatch(createOperation(operation.operation));
       dispatch(removeTrading(trading.id));
 
+      // send publisher payment
       setTimeout(async () => {
-        // send payment
         let FinishOperation: Operation = new Operation('trading_finish');
         let result_final: ResultOperation = FinishOperation.createOperation(values.finalAmount, values.amount);
         const finish_operation: any = wallet.newOperation(result_final, trading.publisher);

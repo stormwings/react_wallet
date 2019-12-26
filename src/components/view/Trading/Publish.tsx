@@ -1,4 +1,6 @@
 import React, { FunctionComponent, Fragment, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import useForm from 'react-hook-form';
 
 import ScreenContainer from './../../containers/ScreenContainer/ScreenContainer';
@@ -9,13 +11,10 @@ import CardHeader from './../../dumb/CardHeader/CardHeader';
 import Separator from './../../dumb/Separator/Separator';
 import Input from './../../dumb/Input/Input';
 import Button from './../../dumb/Button/Button';
-
+import { fetchWallet, updateCurrency, createOperation, createTrading } from './../../../redux/actions/walletActions';
 import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Trading } from './../../../entities/Trading';
 import { Wallet } from './../../../entities/Wallet';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallet, updateCurrency, createOperation, createTrading } from './../../../redux/actions/walletActions';
-import { useHistory } from 'react-router-dom';
 
 const TradingPublish: FunctionComponent = () => {
   const { register, handleSubmit } = useForm();
@@ -40,7 +39,6 @@ const TradingPublish: FunctionComponent = () => {
 
   const onSubmit = (values: any) => {
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
-    // result.ingressAmount = null;
     const operation: any = wallet.newOperation(result);
     if (operation) {
       setAmountError({ error: false, message: '' });
