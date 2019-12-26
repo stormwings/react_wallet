@@ -7,7 +7,7 @@ import App from './App';
 
 // redux persist information
 import store from './redux/store';
-let persistor = store();
+export let persistor = store();
 
 ReactDOM.render(
   <Provider store={persistor.store}>
@@ -17,3 +17,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+export const reduxStore = persistor.store;

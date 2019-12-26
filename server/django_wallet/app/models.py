@@ -5,9 +5,9 @@ from django.db.models.signals import post_save
 
 
 class Operation(models.Model):
-    currency_type = models.CharField(max_length=100, default='')
+    operation_type = models.CharField(max_length=100, default='')
     date = models.CharField(max_length=100, default='')
-    currencyStart = models.CharField(max_length=100, default='')
+    currencyStart = models.CharField(max_length=100, default='', null=True)
     currencyEnd = models.CharField(max_length=100, default='')
     substractionAmount = models.FloatField(default=0)
     ingressAmount = models.FloatField(default=0)

@@ -30,7 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class OperationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Operation
-        fields = ('id', 'currency_type', 'date', 'currencyStart',
+        fields = ('id', 'operation_type', 'date', 'currencyStart',
                   'currencyEnd', 'substractionAmount', 'ingressAmount', 'user')
 
 
