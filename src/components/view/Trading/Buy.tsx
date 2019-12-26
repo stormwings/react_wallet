@@ -30,7 +30,7 @@ const TradingBuy: FunctionComponent = () => {
   const { id }: any = useParams();
   let ChargeOperation: Operation = new Operation('trading_buy');
   // form information handler
-  // const [newAmount, setAmount] = useState('Your new amount');
+  const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState({ error: false, message: '' });
   // sync with redux information
   const myWallet = useSelector((state: any) => state.wallet);
@@ -53,6 +53,7 @@ const TradingBuy: FunctionComponent = () => {
     const operation: any = wallet.newOperation(result, user_id);
     if (operation && myWallet.currency.USD >= trading.substractionAmount) {
       setError({ error: false, message: '' });
+      setDisabled(true);
       dispatch(updateCurrency(user_id, operation.currency));
       dispatch(createOperation(operation.operation));
       dispatch(removeTrading(trading.id));
@@ -64,9 +65,9 @@ const TradingBuy: FunctionComponent = () => {
         const finish_operation: any = wallet.newOperation(result_final, trading.publisher);
         dispatch(updatePublisherCurrency(trading.publisher, finish_operation.publisherMoney));
         dispatch(createOperation(finish_operation.operation));
+        // redirect
+        history.push('/trading/list');
       }, 1000);
-      // redirect
-      history.push('/trading/list');
     } else {
       setError({ error: true, message: 'Invalid number or insufficient funds' });
     }
@@ -97,7 +98,7 @@ const TradingBuy: FunctionComponent = () => {
             </div>
           )}
           <Separator className="medium" />
-          <Button content="Confirm" />
+          <Button content="Confirm" disabled={disabled} />
           <Separator />
           <Menu />
         </form>

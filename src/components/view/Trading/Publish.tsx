@@ -15,10 +15,12 @@ import { Trading } from './../../../entities/Trading';
 import { Wallet } from './../../../entities/Wallet';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchWallet, updateCurrency, createOperation, createTrading } from './../../../redux/actions/walletActions';
+import { useHistory } from 'react-router-dom';
 
 const TradingPublish: FunctionComponent = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const history = useHistory();
   // initialize operation type
   let ChargeOperation: Operation = new Operation('trading_publish');
   // form information handler
@@ -44,10 +46,14 @@ const TradingPublish: FunctionComponent = () => {
       setAmountError({ error: false, message: '' });
       // create Trading and Operation to send to backend
       let TradingToCreate: Trading = new Trading(result, user_id);
-      // wallet.createTrading(TradingToCreate);
+      setDisabled(true);
       dispatch(updateCurrency(user_id, operation.currency));
       dispatch(createOperation(operation.operation));
       dispatch(createTrading(TradingToCreate));
+      // redirect
+      setTimeout(() => {
+        history.push('/trading/list');
+      }, 100);
     } else {
       setAmountError({ error: true, message: 'Invalid number or insufficient funds' });
     }

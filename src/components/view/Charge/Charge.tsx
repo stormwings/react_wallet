@@ -48,12 +48,15 @@ const Charge: FunctionComponent = () => {
     if (operation) {
       dispatch(updateCurrency(user_id, operation.currency));
       dispatch(createOperation(operation.operation));
+      setDisabled(true);
       setError({ error: false, message: '' });
+      // redirect
+      setTimeout(() => {
+        history.push('/');
+      }, 100);
     } else {
       setError({ error: true, message: 'Invalid number or insufficient funds' });
     }
-    // redirect
-    history.push('/');
   };
 
   const onChange = (value: string) => {
