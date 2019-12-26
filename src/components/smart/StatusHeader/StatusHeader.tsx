@@ -22,6 +22,7 @@ const StatusHeader: FunctionComponent<IProps> = props => {
         <CurrencyStatus principalValue={`BTC ${cryptoValue}`} secondaryValue={`${fiatValue} USD`} principalIcon="bitcoin" />
       </div>
       <Separator />
+      {/* operation icon list */}
       <IconList />
     </ScreenContainer>
   );

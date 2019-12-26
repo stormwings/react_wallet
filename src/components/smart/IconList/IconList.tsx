@@ -9,9 +9,7 @@ import IconBitcoinPill from './../../../assets/svg/bitcoin_pill.svg';
 import IconAdd from './../../../assets/svg/add.svg';
 import IconTradingMoney from './../../../assets/svg/trading_money.svg';
 
-interface IProps {}
-
-const IconList: FunctionComponent<IProps> = () => {
+const IconList: FunctionComponent = () => {
   const history = useHistory();
 
   return (

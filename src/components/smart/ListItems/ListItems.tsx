@@ -18,6 +18,7 @@ const ListItems: FunctionComponent<IPropsList> = props => {
 
   return (
     <Fragment>
+      {/* header span list with redirection */}
       {includeSpan && (
         <SpanList
           content="Last"
@@ -28,6 +29,7 @@ const ListItems: FunctionComponent<IPropsList> = props => {
       )}
       <Separator className="empty" />
       <div className="overflow_scroll">
+        {/* item list */}
         {items.map((item, i) => (
           <ItemRow key={i} item={item} onClick={onClick} />
         ))}
@@ -49,6 +51,7 @@ export const ItemRow: FunctionComponent<IPropsItem> = props => {
     item: { id, operation_type, currencyEnd, currencyStart, date, ingressAmount, substractionAmount, trading_type }
   } = props;
 
+  // support operation and trading items
   const type: any = operation_type ? operation_type : trading_type;
   const operation: Operation = new Operation(type);
 

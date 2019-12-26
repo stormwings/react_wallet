@@ -1,5 +1,6 @@
 import { ResultOperation } from './../../entities/Operation';
 import CurrencyPrice from './../../entities/CurrencyPrice';
+import * as types from './../types';
 
 const INITIAL_STATE = {
   currency: {
@@ -12,7 +13,7 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action: any) {
   switch (action.type) {
-    case 'WALLET_LOAD': {
+    case types.WALLET_LOAD: {
       const { wallet, operations, tradings } = action.payload;
 
       operations.data.reverse();
@@ -24,7 +25,7 @@ export default function(state = INITIAL_STATE, action: any) {
         tradings: tradings.data
       };
     }
-    case 'WALLET_UPDATE': {
+    case types.WALLET_UPDATE: {
       const { BTC, USD } = action.payload;
       return {
         ...state,

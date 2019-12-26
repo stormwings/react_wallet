@@ -16,6 +16,7 @@ export class Operation {
   public validator: any;
 
   constructor(type: string, cryptoPrices: CurrencyPrice = new CurrencyPrice()) {
+    // start "Operation Creator" with different values depending type
     switch (type) {
       case 'sell_crypto':
         this.operation_type = type;
@@ -90,6 +91,7 @@ export class Operation {
     }
   }
 
+  // format currencies
   public transformCurrency(amount: string) {
     switch (this.currencyEnd) {
       case 'BTC':
@@ -105,6 +107,7 @@ export class Operation {
     }
   }
 
+  // create "Operation" to save
   public createOperation(amount: number | string, resultAmount: number | string) {
     const date = new Date();
     const formatDate = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()},${date.getHours()}:${date.getMinutes()}`;

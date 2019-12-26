@@ -24,8 +24,11 @@ export class Wallet {
   }
 
   public newOperation(operationResult: any, otherUserId: any = null) {
+    // check owner's operation
     operationResult.user = otherUserId ? otherUserId : this.userId;
 
+    // return Operation to save in the wallet
+    // * return false if incorrect data *
     switch (operationResult.operation_type) {
       case 'buy_crypto': {
         const usdToSell = parseFloat(operationResult.substractionAmount);

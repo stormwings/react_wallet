@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { BrowserRouter, Route, Switch, BrowserRouterProps } from 'react-router-dom';
+import React, { FunctionComponent, StatelessComponent } from 'react';
+import { BrowserRouter, Route, Switch, BrowserRouterProps, RouteComponentProps, Redirect } from 'react-router-dom';
 
 import Dashboard from './components/view/Dashboard/Dashboard';
 import Auth from './components/view/Auth/Auth';
@@ -24,6 +24,8 @@ const Router: FunctionComponent<BrowserRouterProps> = () => {
             <Route exact path="/trading/buy/:id" component={TradingBuy} />
             <Route exact path="/history" component={History} />
             <Route exact path="/user" component={User} />
+
+            <Route component={NoMatch} />
           </Switch>
         </BrowserRouter>
       </div>
@@ -32,3 +34,5 @@ const Router: FunctionComponent<BrowserRouterProps> = () => {
 };
 
 export default Router;
+
+const NoMatch: StatelessComponent<RouteComponentProps> = () => <Redirect to="/auth/login" />;

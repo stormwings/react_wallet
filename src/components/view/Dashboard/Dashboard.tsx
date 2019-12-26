@@ -5,7 +5,6 @@ import { fetchWallet } from './../../../redux/actions/walletActions';
 
 import HeaderContainer from './../../../components/containers/HeaderContainer/HeaderContainer';
 import ScreenContainer from './../../../components/containers/ScreenContainer/ScreenContainer';
-import CurrencyStatus from './../../../components/dumb/CurrencyStatus/CurrencyStatus';
 import Separator from './../../../components/dumb/Separator/Separator';
 import StatusHeader from './../../smart/StatusHeader/StatusHeader';
 import ListItems from './../../smart/ListItems/ListItems';
@@ -16,7 +15,7 @@ const Dashboard: FunctionComponent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // fetch and show main information
+  // fetch and show the main information
   const {
     auth: { user_id },
     wallet

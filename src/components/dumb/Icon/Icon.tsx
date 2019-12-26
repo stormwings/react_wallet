@@ -18,7 +18,9 @@ const Icon: FunctionComponent<IProps> = props => {
 };
 
 const defaultProps = {
-  onClick: () => console.log('onClick empty')
+  onClick: () => {
+    return;
+  }
 };
 
 export default Icon;
