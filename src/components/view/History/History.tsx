@@ -23,12 +23,14 @@ const History: FunctionComponent = () => {
     dispatch(fetchWallet(user_id));
   }, []);
 
+  const operations = wallet.operations.filter((operation: any) => operation.user == user_id);
+
   return (
     <Fragment>
       <HeaderContainer />
       <StatusHeader cryptoValue={wallet.currency.BTC} fiatValue={wallet.currency.USD} />
       <ScreenContainer>
-        <ListItems items={wallet.operations} />
+        <ListItems items={operations} />
         <Separator />
         <Menu />
       </ScreenContainer>

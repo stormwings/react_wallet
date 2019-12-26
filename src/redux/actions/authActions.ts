@@ -2,7 +2,7 @@ import Axios, { AxiosResponse, AxiosError } from 'axios';
 import { Dispatch } from 'redux';
 import * as urls from './../../helpers/api';
 import * as types from './../types';
-import { buildTokenHeader } from '../../helpers/functions';
+import { buildTokenHeader } from './../../helpers/functions';
 
 export const authLogin = (payload: object) => ({ type: types.AUTH_LOGIN, payload });
 export const authRegister = (payload: object) => ({ type: types.AUTH_REGISTER, payload });

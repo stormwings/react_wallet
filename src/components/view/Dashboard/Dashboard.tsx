@@ -26,14 +26,14 @@ const Dashboard: FunctionComponent = () => {
     dispatch(fetchWallet(user_id));
   }, []);
 
-  const lastItems = wallet.operations.slice(1, 5);
+  const operations = wallet.operations.filter((operation: any) => operation.user == user_id).slice(0, 5);
 
   return (
     <Fragment>
       <HeaderContainer />
       <StatusHeader cryptoValue={wallet.currency.BTC} fiatValue={wallet.currency.USD} />
       <ScreenContainer>
-        <ListItems items={lastItems} includeSpan onClickSpan={() => history.push('/history')} />
+        <ListItems items={operations} includeSpan onClickSpan={() => history.push('/history')} />
         <Separator />
         <Menu />
       </ScreenContainer>
