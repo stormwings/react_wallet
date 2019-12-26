@@ -1,6 +1,11 @@
 import React, { FunctionComponent, Fragment, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import useForm from 'react-hook-form';
+
+import { fetchWallet, createOperation, updateCurrency } from '../../../redux/actions/walletActions';
+import { Operation, ResultOperation } from './../../../entities/Operation';
+import { Wallet } from './../../../entities/Wallet';
 
 import ScreenContainer from './../../containers/ScreenContainer/ScreenContainer';
 import HeaderContainer from './../../containers/HeaderContainer/HeaderContainer';
@@ -11,12 +16,11 @@ import Separator from './../../dumb/Separator/Separator';
 import Input from './../../dumb/Input/Input';
 import Button from './../../dumb/Button/Button';
 
-import { Operation, ResultOperation } from './../../../entities/Operation';
-import { Wallet } from './../../../entities/Wallet';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallet, putWallet } from '../../../redux/actions/walletActions';
-
 const Charge: FunctionComponent = () => {
+  const {
+    auth: { user_id }
+  } = useSelector((state: any) => state);
+
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   // initialize operation type
@@ -28,31 +32,33 @@ const Charge: FunctionComponent = () => {
   const [error, setError] = useState({ error: false, message: '' });
   // sync with redux information
   const myWallet = useSelector((state: any) => state.wallet);
-  let wallet: Wallet = new Wallet({ ...myWallet });
+  let wallet: Wallet = new Wallet({ ...myWallet }, user_id);
   // get user's wallet from api
   useEffect(() => {
-    dispatch(fetchWallet());
+    dispatch(fetchWallet(user_id));
   }, []);
 
   const onSubmit = (values: any) => {
     values.finalAmount = newAmount;
     // create Operation to send to backend
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
-    const success = wallet.newOperation(result);
-    if (success) {
+    const operation: any = wallet.newOperation(result);
+
+    if (operation) {
+      dispatch(updateCurrency(user_id, operation.currency));
+      dispatch(createOperation(operation.operation));
       setError({ error: false, message: '' });
-      dispatch(putWallet({ ...wallet })); // new wallet value
     } else {
       setError({ error: true, message: 'Insufficient funds' });
     }
   };
 
-  const onChange = (e: any) => {
-    if (ChargeOperation.validator.test(e)) {
+  const onChange = (value: string) => {
+    if (ChargeOperation.validator.test(value)) {
       // enable form to submit
       setDisabled(false);
       // transform to selected currency and set
-      const valueInNewCurrency: any = ChargeOperation.transformCurrency(e);
+      const valueInNewCurrency: any = ChargeOperation.transformCurrency(value);
       setAmount(valueInNewCurrency);
     } else {
       // block submit form
@@ -76,7 +82,7 @@ const Charge: FunctionComponent = () => {
               error={error.error}
               autoComplete={false}
               errorText={error.message}
-              onChange={(value: number | string) => onChange(value)}
+              onChange={(value: string) => onChange(value)}
               inputRef={register}
             />
             <Separator className="empty" />

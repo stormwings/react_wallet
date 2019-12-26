@@ -2,7 +2,6 @@ import { ResultOperation } from '../../entities/Operation';
 import CurrencyPrice from '../../entities/CurrencyPrice';
 
 const INITIAL_STATE = {
-  userId: 1 as number,
   currency: {
     BTC: 0,
     USD: 0
@@ -14,21 +13,19 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action: any) {
   switch (action.type) {
     case 'WALLET_LOAD': {
-      const { currency, operations, userId, tradings } = action.payload;
+      const { wallet, operations, tradings } = action.payload;
+
       return {
-        currency,
-        operations,
-        userId,
-        tradings
+        currency: wallet.data,
+        operations: operations.data,
+        tradings: tradings.data
       };
     }
     case 'WALLET_UPDATE': {
-      const { currency, operations, userId, tradings } = action.payload;
+      const { BTC, USD } = action.payload;
       return {
-        currency,
-        operations,
-        userId,
-        tradings
+        ...state,
+        currency: { BTC, USD }
       };
     }
     default:

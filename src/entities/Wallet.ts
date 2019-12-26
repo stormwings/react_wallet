@@ -17,14 +17,16 @@ export class Wallet {
   public operations: Array<ResultOperation>;
   public tradings: Array<any>;
 
-  constructor(wallet: any) {
-    this.userId = wallet.userId;
+  constructor(wallet: any, userId: number = 1) {
+    this.userId = userId;
     this.currency = new WalletCurrency(wallet.currency.BTC, wallet.currency.USD);
     this.operations = [...wallet.operations];
     this.tradings = [...wallet.tradings];
   }
 
   public newOperation(operationResult: any) {
+    operationResult.user = this.userId;
+
     switch (operationResult.type) {
       case 'buy_crypto': {
         const usdToSell = parseFloat(operationResult.substractionAmount);
@@ -34,9 +36,7 @@ export class Wallet {
           this.currency.USD = parseFloat((this.currency.USD - usdToSell).toFixed(2));
           this.currency.BTC = parseFloat((this.currency.BTC + btcToBuy).toFixed(5));
 
-          let newOperationsArray = [operationResult, ...this.operations];
-          this.operations = newOperationsArray;
-          return true;
+          return { currency: this.currency, operation: operationResult };
         } else {
           return false;
         }
@@ -64,9 +64,7 @@ export class Wallet {
           this.currency.BTC = parseFloat((this.currency.BTC - btcToSell).toFixed(5));
           this.currency.USD = parseFloat((this.currency.USD + usdToBuy).toFixed(2));
 
-          let newOperationsArray = [operationResult, ...this.operations];
-          this.operations = newOperationsArray;
-          return true;
+          return { currency: this.currency, operation: operationResult };
         } else {
           return false;
         }
@@ -97,10 +95,7 @@ export class Wallet {
       default: {
         const usdToCharge = parseFloat(operationResult.ingressAmount);
         this.currency.USD = parseFloat((this.currency.USD + usdToCharge).toFixed(2));
-
-        let newOperationsArray = [operationResult, ...this.operations];
-        this.operations = newOperationsArray;
-        return true;
+        return { currency: this.currency, operation: operationResult };
       }
     }
   }

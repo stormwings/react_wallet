@@ -128,4 +128,5 @@ export interface ResultOperation {
   currencyEnd?: string;
   substractionAmount?: string | number | null;
   ingressAmount?: string | number | null;
+  user?: string;
 }
