@@ -37,9 +37,6 @@ export const updateCurrency = (userId: string, body: any) => async (dispatch: an
 export const createOperation = (body: any) => async (dispatch: any) => {
   try {
     const headers = buildTokenHeader();
-    // normalize
-    body.operation_type = body.type;
-    delete body.type;
 
     // request
     await Axios.post(`http://localhost:8000/operation/`, body, { headers });
@@ -53,9 +50,6 @@ export const createOperation = (body: any) => async (dispatch: any) => {
 export const createTrading = (body: any) => async (dispatch: any) => {
   try {
     const headers = buildTokenHeader();
-    // normalize
-    body.trading_type = body.type;
-    delete body.type;
 
     // request
     await Axios.post(`http://localhost:8000/trading/`, body, { headers });

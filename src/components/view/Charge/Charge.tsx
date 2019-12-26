@@ -42,6 +42,7 @@ const Charge: FunctionComponent = () => {
     values.finalAmount = newAmount;
     // create Operation to send to backend
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
+
     const operation: any = wallet.newOperation(result);
 
     if (operation) {
@@ -49,7 +50,7 @@ const Charge: FunctionComponent = () => {
       dispatch(createOperation(operation.operation));
       setError({ error: false, message: '' });
     } else {
-      setError({ error: true, message: 'Insufficient funds' });
+      setError({ error: true, message: 'Invalid number or insufficient funds' });
     }
   };
 

@@ -49,7 +49,7 @@ const TradingPublish: FunctionComponent = () => {
       dispatch(createOperation(operation.operation));
       dispatch(createTrading(TradingToCreate));
     } else {
-      setAmountError({ error: true, message: 'Insufficient funds' });
+      setAmountError({ error: true, message: 'Invalid number or insufficient funds' });
     }
   };
 

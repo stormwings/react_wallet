@@ -1,5 +1,4 @@
 import { ResultOperation } from './Operation';
-import { Trading } from './Trading';
 
 export class WalletCurrency {
   public BTC: number;
@@ -27,7 +26,7 @@ export class Wallet {
   public newOperation(operationResult: any, otherUserId: any = null) {
     operationResult.user = otherUserId ? otherUserId : this.userId;
 
-    switch (operationResult.type) {
+    switch (operationResult.operation_type) {
       case 'buy_crypto': {
         const usdToSell = parseFloat(operationResult.substractionAmount);
         const btcToBuy = parseFloat(operationResult.ingressAmount);
@@ -92,17 +91,5 @@ export class Wallet {
         return { currency: this.currency, operation: operationResult };
       }
     }
-  }
-
-  // pending remove
-
-  public createTrading(trading: Trading) {
-    let newTradingsArray = [trading, ...this.tradings];
-    this.tradings = newTradingsArray;
-  }
-
-  public removeTrading(id: number) {
-    let newTradingsArray = this.tradings.filter(item => item.id !== id);
-    this.tradings = newTradingsArray;
   }
 }

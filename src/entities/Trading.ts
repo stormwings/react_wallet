@@ -2,14 +2,14 @@ export class Trading {
   public publisher: number | string;
   public currencyStart: string | null;
   public currencyEnd: string | null;
-  public type: string;
+  public trading_type: string;
   public date: string;
   public substractionAmount: string | null;
   public ingressAmount: string;
 
   constructor(currency: any, userId: number) {
     this.publisher = userId;
-    this.type = currency.type;
+    this.trading_type = currency.operation_type;
     this.date = currency.date;
     // changeds because its a buy
     this.currencyStart = currency.currencyEnd;

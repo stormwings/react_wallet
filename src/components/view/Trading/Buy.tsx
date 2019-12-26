@@ -14,7 +14,13 @@ import Button from './../../dumb/Button/Button';
 import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Wallet } from './../../../entities/Wallet';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallet, updateCurrency, createOperation, updatePublisherCurrency, removeTrading } from './../../../redux/actions/walletActions';
+import {
+  fetchWallet,
+  updateCurrency,
+  createOperation,
+  updatePublisherCurrency,
+  removeTrading
+} from './../../../redux/actions/walletActions';
 
 const TradingBuy: FunctionComponent = () => {
   const { register, handleSubmit } = useForm();
@@ -30,7 +36,6 @@ const TradingBuy: FunctionComponent = () => {
   const myWallet = useSelector((state: any) => state.wallet);
   // get trading and set
   const trading = myWallet.tradings.find((item: any) => item.id == id);
-  // console.log(myWallet.tradings[0]);
   let wallet: Wallet = new Wallet({ ...myWallet });
   // get user's wallet from api
   const {
@@ -45,7 +50,7 @@ const TradingBuy: FunctionComponent = () => {
     // create Operation to send to backend
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
     // wallet.removeTrading(trading.id);
-    const operation: any = wallet.newOperation(result);
+    const operation: any = wallet.newOperation(result, user_id);
     if (operation && myWallet.currency.USD >= trading.substractionAmount) {
       setError({ error: false, message: '' });
       dispatch(updateCurrency(user_id, operation.currency));
@@ -56,16 +61,14 @@ const TradingBuy: FunctionComponent = () => {
         // send payment
         let FinishOperation: Operation = new Operation('trading_finish');
         let result_final: ResultOperation = FinishOperation.createOperation(values.finalAmount, values.amount);
-
         const finish_operation: any = wallet.newOperation(result_final, trading.publisher);
-        // // wallet.newOperation(result);
         dispatch(updatePublisherCurrency(trading.publisher, finish_operation.publisherMoney));
         dispatch(createOperation(finish_operation.operation));
       }, 1000);
       // redirect
-      history.push('/trading/list');
+      // history.push('/trading/list');
     } else {
-      setError({ error: true, message: 'Insufficient funds' });
+      setError({ error: true, message: 'Invalid number or insufficient funds' });
     }
   };
 

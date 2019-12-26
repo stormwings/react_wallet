@@ -46,9 +46,10 @@ interface IPropsItem {
 export const ItemRow: FunctionComponent<IPropsItem> = props => {
   const {
     onClick,
-    item: { id, type, currencyEnd, currencyStart, date, ingressAmount, substractionAmount }
+    item: { id, operation_type, currencyEnd, currencyStart, date, ingressAmount, substractionAmount, trading_type }
   } = props;
 
+  const type: any = operation_type ? operation_type : trading_type;
   const operation: Operation = new Operation(type);
 
   return (

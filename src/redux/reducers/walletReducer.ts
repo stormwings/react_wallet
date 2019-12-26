@@ -15,6 +15,9 @@ export default function(state = INITIAL_STATE, action: any) {
     case 'WALLET_LOAD': {
       const { wallet, operations, tradings } = action.payload;
 
+      operations.data.reverse();
+      tradings.data.reverse();
+
       return {
         currency: wallet.data,
         operations: operations.data,
