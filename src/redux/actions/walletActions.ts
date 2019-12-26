@@ -85,8 +85,7 @@ export const updatePublisherCurrency = (publisherId: any, publisherMoney: any) =
       data: { USD }
     } = await Axios.get(`http://localhost:8000/wallet/${publisherId}/`, { headers });
     USD += publisherMoney;
-    const result = await Axios.put(`http://localhost:8000/wallet/${publisherId}/`, { USD }, { headers });
-    dispatch(updateWallet(result.data));
+    await Axios.put(`http://localhost:8000/wallet/${publisherId}/`, { USD }, { headers });
   } catch (error) {
     console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
     const { message } = error;
