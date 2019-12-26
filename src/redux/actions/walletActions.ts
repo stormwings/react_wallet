@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { buildTokenHeader } from '../../helpers/functions';
+import { buildTokenHeader } from './../../helpers/functions';
 
 export const loadWallet = (payload: object) => ({ type: 'WALLET_LOAD', payload });
 export const updateWallet = (payload: object) => ({ type: 'WALLET_UPDATE', payload });

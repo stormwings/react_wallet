@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import useForm from 'react-hook-form';
 
-import { fetchWallet, createOperation, updateCurrency } from '../../../redux/actions/walletActions';
+import { fetchWallet, createOperation, updateCurrency } from './../../../redux/actions/walletActions';
 import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Wallet } from './../../../entities/Wallet';
 

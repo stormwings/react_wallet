@@ -8,9 +8,9 @@ import Separator from './../../../components/dumb/Separator/Separator';
 import StatusHeader from './../../smart/StatusHeader/StatusHeader';
 import ListItems from './../../smart/ListItems/ListItems';
 import Menu from './../../smart/Menu/Menu';
-import { fetchWallet } from '../../../redux/actions/walletActions';
-import Button from '../../dumb/Button/Button';
-import CardHeader from '../../dumb/CardHeader/CardHeader';
+import { fetchWallet } from './../../../redux/actions/walletActions';
+import Button from './../../dumb/Button/Button';
+import CardHeader from './../../dumb/CardHeader/CardHeader';
 import IconTradingMoney from './../../../assets/svg/trading_money.svg';
 import { useHistory } from 'react-router-dom';
 

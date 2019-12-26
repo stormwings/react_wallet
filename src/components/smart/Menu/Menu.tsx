@@ -9,7 +9,7 @@ import IconWallet from './../../../assets/svg/wallet.svg';
 import IconAdd from './../../../assets/svg/add.svg';
 import IconContact from './../../../assets/svg/contact.svg';
 import IconLogout from './../../../assets/svg/logout.svg';
-import { authSignOut } from '../../../redux/actions/authActions';
+import { authSignOut } from './../../../redux/actions/authActions';
 
 const Menu: FunctionComponent = () => {
   const history = useHistory();

@@ -14,7 +14,7 @@ import Button from './../../dumb/Button/Button';
 import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Wallet } from './../../../entities/Wallet';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallet, updateCurrency, createOperation, updatePublisherCurrency, removeTrading } from '../../../redux/actions/walletActions';
+import { fetchWallet, updateCurrency, createOperation, updatePublisherCurrency, removeTrading } from './../../../redux/actions/walletActions';
 
 const TradingBuy: FunctionComponent = () => {
   const { register, handleSubmit } = useForm();

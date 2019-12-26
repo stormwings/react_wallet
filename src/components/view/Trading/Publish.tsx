@@ -14,7 +14,7 @@ import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Trading } from './../../../entities/Trading';
 import { Wallet } from './../../../entities/Wallet';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallet, updateCurrency, createOperation, createTrading } from '../../../redux/actions/walletActions';
+import { fetchWallet, updateCurrency, createOperation, createTrading } from './../../../redux/actions/walletActions';
 
 const TradingPublish: FunctionComponent = () => {
   const { register, handleSubmit } = useForm();

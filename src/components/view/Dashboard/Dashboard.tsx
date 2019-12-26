@@ -2,7 +2,7 @@ import React, { FunctionComponent, Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './Dashboard.scss';
 
-import { fetchWallet } from '../../../redux/actions/walletActions';
+import { fetchWallet } from './../../../redux/actions/walletActions';
 
 import HeaderContainer from './../../../components/containers/HeaderContainer/HeaderContainer';
 import ScreenContainer from './../../../components/containers/ScreenContainer/ScreenContainer';

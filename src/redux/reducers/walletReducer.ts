@@ -1,5 +1,5 @@
-import { ResultOperation } from '../../entities/Operation';
-import CurrencyPrice from '../../entities/CurrencyPrice';
+import { ResultOperation } from './../../entities/Operation';
+import CurrencyPrice from './../../entities/CurrencyPrice';
 
 const INITIAL_STATE = {
   currency: {

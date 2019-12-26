@@ -4,7 +4,7 @@ import './ListItems.scss';
 import CardHeader from './../../../components/dumb/CardHeader/CardHeader';
 import SpanList from './../../../components/dumb/SpanList/SpanList';
 import Separator from './../../dumb/Separator/Separator';
-import { ResultOperation, Operation } from '../../../entities/Operation';
+import { ResultOperation, Operation } from './../../../entities/Operation';
 
 interface IPropsList {
   items: Array<ResultOperation>;

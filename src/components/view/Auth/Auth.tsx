@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useForm from 'react-hook-form';
 import './Auth.scss';
 
-import { authSignIn, authSignUp } from '../../../redux/actions/authActions';
+import { authSignIn, authSignUp } from './../../../redux/actions/authActions';
 import SvgBitcoin from './../../../assets/components/SvgBitcoin';
 import HeaderContainer from './../../../components/containers/HeaderContainer/HeaderContainer';
 import ScreenContainer from './../../../components/containers/ScreenContainer/ScreenContainer';
