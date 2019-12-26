@@ -1,19 +1,22 @@
 import Axios from 'axios';
+import { Dispatch } from 'redux';
+import * as types from './../types';
+import * as urls from './../../helpers/api';
 import { buildTokenHeader } from './../../helpers/functions';
 
-export const loadWallet = (payload: object) => ({ type: 'WALLET_LOAD', payload });
-export const updateWallet = (payload: object) => ({ type: 'WALLET_UPDATE', payload });
-export const errorWallet = (payload: object) => ({ type: 'WALLET_ERROR', payload });
-export const walletLoading = () => ({ type: 'WALLET_LOADING' });
+export const loadWallet = (payload: object) => ({ type: types.WALLET_LOAD, payload });
+export const updateWallet = (payload: object) => ({ type: types.WALLET_UPDATE, payload });
+export const errorWallet = (payload: object) => ({ type: types.WALLET_ERROR, payload });
+export const walletLoading = () => ({ type: types.WALLET_LOADING });
 
-export const fetchWallet = (userId: number) => async (dispatch: any) => {
+export const fetchWallet = (userId: number) => async (dispatch: Dispatch) => {
   dispatch(walletLoading());
   try {
     const headers = buildTokenHeader();
 
-    const wallet = await Axios.get(`http://localhost:8000/wallet/${userId}/`, { headers });
-    const tradings = await Axios.get('http://localhost:8000/trading/', { headers });
-    const operations = await Axios.get('http://localhost:8000/operation/', { headers });
+    const wallet = await Axios.get(urls.URL_WALLET(userId), { headers });
+    const tradings = await Axios.get(urls.URL_TRADINGS, { headers });
+    const operations = await Axios.get(urls.URL_OPERATIONS, { headers });
 
     await dispatch(loadWallet({ wallet, operations, tradings }));
   } catch (error) {
@@ -22,11 +25,11 @@ export const fetchWallet = (userId: number) => async (dispatch: any) => {
   }
 };
 
-export const updateCurrency = (userId: string, body: any) => async (dispatch: any) => {
+export const updateCurrency = (userId: number, body: any) => async (dispatch: Dispatch) => {
   try {
     const headers = buildTokenHeader();
 
-    const { data } = await Axios.put(`http://localhost:8000/wallet/${userId}/`, body, { headers });
+    const { data } = await Axios.put(urls.URL_WALLET(userId), body, { headers });
     dispatch(updateWallet(data));
   } catch (error) {
     const { message } = error;
@@ -34,12 +37,11 @@ export const updateCurrency = (userId: string, body: any) => async (dispatch: an
   }
 };
 
-export const createOperation = (body: any) => async (dispatch: any) => {
+export const createOperation = (body: object) => async (dispatch: Dispatch) => {
   try {
     const headers = buildTokenHeader();
 
-    // request
-    await Axios.post(`http://localhost:8000/operation/`, body, { headers });
+    await Axios.post(urls.URL_OPERATIONS, body, { headers });
   } catch (error) {
     console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
     const { message } = error;
@@ -47,12 +49,11 @@ export const createOperation = (body: any) => async (dispatch: any) => {
   }
 };
 
-export const createTrading = (body: any) => async (dispatch: any) => {
+export const createTrading = (body: object) => async (dispatch: Dispatch) => {
   try {
     const headers = buildTokenHeader();
 
-    // request
-    await Axios.post(`http://localhost:8000/trading/`, body, { headers });
+    await Axios.post(urls.URL_TRADINGS, body, { headers });
   } catch (error) {
     console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
     const { message } = error;
@@ -60,10 +61,10 @@ export const createTrading = (body: any) => async (dispatch: any) => {
   }
 };
 
-export const removeTrading = (tradingId: number) => async (dispatch: any) => {
+export const removeTrading = (tradingId: number) => async (dispatch: Dispatch) => {
   try {
     const headers = buildTokenHeader();
-    await Axios.delete(`http://localhost:8000/trading/${tradingId}/`, { headers });
+    await Axios.delete(urls.URL_TRADING(tradingId), { headers });
   } catch (error) {
     console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
     const { message } = error;
@@ -71,15 +72,15 @@ export const removeTrading = (tradingId: number) => async (dispatch: any) => {
   }
 };
 
-export const updatePublisherCurrency = (publisherId: any, publisherMoney: any) => async (dispatch: any) => {
+export const updatePublisherCurrency = (publisherId: number, publisherMoney: number) => async (dispatch: Dispatch) => {
   try {
     const headers = buildTokenHeader();
 
     let {
       data: { USD }
-    } = await Axios.get(`http://localhost:8000/wallet/${publisherId}/`, { headers });
+    } = await Axios.get(urls.URL_WALLET(publisherId), { headers });
     USD += publisherMoney;
-    await Axios.put(`http://localhost:8000/wallet/${publisherId}/`, { USD }, { headers });
+    await Axios.put(urls.URL_WALLET(publisherId), { USD }, { headers });
   } catch (error) {
     console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
     const { message } = error;

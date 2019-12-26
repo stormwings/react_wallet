@@ -12,47 +12,32 @@ const BASE_API_URL: string = 'http://localhost:8000/';
  * register | POST
  * logout | POST
  */
-export const URL_SIGNIN: string = `${BASE_API_URL}rest-auth/login/ `;
+export const URL_SIGNIN: string = `${BASE_API_URL}rest-auth/login/`;
 export const URL_SIGNUP: string = `${BASE_API_URL}rest-auth/registration/`;
 export const URL_LOGOUT: string = `${BASE_API_URL}rest-auth/logout/`;
 
 /**
- * Profile
- *
- * get profiles | GET
- * get profile | GET
- * create profile | POST
- * update profile | PUT
- */
-
-/**
  * Operation
  *
- * get operations | GET
- * get operation | GET
- * create operation | POST
- * update operation | PUT
+ * get operations | GET | CREATE
  */
+export const URL_OPERATIONS: string = `${BASE_API_URL}operation/`;
 
 /**
  * Trading
  *
- * get tradings | GET
- * get trading | GET
- * create trading | POST
- * update trading | PUT
- * delete trading | DELETE
+ * tradings | GET | CREATE
+ * trading | DELETE
  */
+export const URL_TRADINGS: string = `${BASE_API_URL}trading/`;
+export const URL_TRADING = (id: number): string => `${BASE_API_URL}trading/${id}/`;
 
 /**
  * Wallet
  *
- * get wallets | GET
- * get wallet | GET
- * create wallet | POST
- * update wallet | PUT
- * delete wallet | DELETE
+ * wallet | GET | PUT
  */
+export const URL_WALLET = (id: number): string => `${BASE_API_URL}wallet/${id}/`;
 
 /**
  * Others
