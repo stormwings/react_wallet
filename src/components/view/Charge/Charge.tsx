@@ -1,6 +1,6 @@
 import React, { FunctionComponent, Fragment, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import useForm from 'react-hook-form';
 
 import { fetchWallet, createOperation, updateCurrency } from './../../../redux/actions/walletActions';
@@ -20,7 +20,7 @@ const Charge: FunctionComponent = () => {
   const {
     auth: { user_id }
   } = useSelector((state: any) => state);
-
+  const history = useHistory();
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   // initialize operation type
@@ -52,6 +52,8 @@ const Charge: FunctionComponent = () => {
     } else {
       setError({ error: true, message: 'Invalid number or insufficient funds' });
     }
+    // redirect
+    history.push('/');
   };
 
   const onChange = (value: string) => {
@@ -76,19 +78,16 @@ const Charge: FunctionComponent = () => {
         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'contents' }}>
           <CardHeader content={ChargeOperation.title} subtitle={ChargeOperation.subtitle} icon={ChargeOperation.icon} className="header" />
           <Separator className="medium" />
-          <div className="form--container">
-            <Input
-              name="amount"
-              labelText="Set an amount"
-              error={error.error}
-              autoComplete={false}
-              errorText={error.message}
-              onChange={(value: string) => onChange(value)}
-              inputRef={register}
-            />
-            <Separator className="empty" />
-            <Input name="finalAmount" labelText="Your charge" placeholder={newAmount} disabled inputRef={register} />
-          </div>
+          {/* generate the inputs depending the router */}
+          {type === 'sell_crypto' && (
+            <SellOperationForm error={error} onChange={onChange} register={register} newAmount={newAmount} setAmount={setAmount} />
+          )}
+          {type === 'buy_crypto' && (
+            <BuyOperationForm error={error} onChange={onChange} register={register} newAmount={newAmount} setAmount={setAmount} />
+          )}
+          {type === 'buy_fiat' && (
+            <ChargeOperationForm error={error} onChange={onChange} register={register} newAmount={newAmount} setAmount={setAmount} />
+          )}
           <Separator className="medium" />
           <Button content="Confirm" disabled={disabled} />
           <Separator />
@@ -100,3 +99,69 @@ const Charge: FunctionComponent = () => {
 };
 
 export default Charge;
+
+const SellOperationForm = ({ error, onChange, register, newAmount, setAmount }: any) => {
+  useEffect(() => {
+    setAmount('Your new amount');
+  }, []);
+
+  return (
+    <div className="form--container">
+      <Input
+        name="amount"
+        labelText='Set the amount "in BTC" to sell'
+        error={error.error}
+        autoComplete={false}
+        errorText={error.message}
+        onChange={(value: string) => onChange(value)}
+        inputRef={register}
+      />
+      <Separator className="empty" />
+      <Input name="finalAmount" labelText="Your BTC to charge" placeholder={newAmount} disabled inputRef={register} />
+    </div>
+  );
+};
+
+const BuyOperationForm = ({ error, onChange, register, newAmount, setAmount }: any) => {
+  useEffect(() => {
+    setAmount('Your purchase in BTC');
+  }, []);
+
+  return (
+    <div className="form--container">
+      <Input
+        name="amount"
+        labelText='Set the amount "in USD" to pay'
+        error={error.error}
+        autoComplete={false}
+        errorText={error.message}
+        onChange={(value: string) => onChange(value)}
+        inputRef={register}
+      />
+      <Separator className="empty" />
+      <Input name="finalAmount" labelText="BTC to buy" placeholder={newAmount} disabled inputRef={register} />
+    </div>
+  );
+};
+
+const ChargeOperationForm = ({ error, onChange, register, newAmount, setAmount }: any) => {
+  useEffect(() => {
+    setAmount('Your charge in USD');
+  }, []);
+
+  return (
+    <div className="form--container">
+      <Input
+        name="amount"
+        labelText='Set the amount "in USD" to charge'
+        error={error.error}
+        autoComplete={false}
+        errorText={error.message}
+        onChange={(value: string) => onChange(value)}
+        inputRef={register}
+      />
+      <Separator className="empty" />
+      <Input name="finalAmount" labelText="Your new amount" placeholder={newAmount} disabled inputRef={register} />
+    </div>
+  );
+};

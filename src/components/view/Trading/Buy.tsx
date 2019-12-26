@@ -66,7 +66,7 @@ const TradingBuy: FunctionComponent = () => {
         dispatch(createOperation(finish_operation.operation));
       }, 1000);
       // redirect
-      // history.push('/trading/list');
+      history.push('/trading/list');
     } else {
       setError({ error: true, message: 'Invalid number or insufficient funds' });
     }
