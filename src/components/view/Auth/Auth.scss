@@ -1,3 +1,5 @@
+@import "./../../../styles/variables";
+
 .welcome--image {
   display: flex;
   flex-direction: column;
@@ -7,4 +9,23 @@
   width: 150px;
   max-height: 150px;
   margin: 20px
+}
+
+.option {
+  width: 100%;
+  max-width: 324px;
+  color: #8b9195;
+  font-family: $fontRoboto;
+  font-size: 12px;
+  text-align: center;
+
+  .blue {
+    color: $colorPrimary;
+    text-decoration: none;
+  }
+
+  .red {
+    color: $colorRed;
+    text-decoration: none;
+  }
 }

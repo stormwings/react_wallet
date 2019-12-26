@@ -1,43 +1,57 @@
-import React, { FunctionComponent, Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, { FunctionComponent, Fragment, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import useForm from 'react-hook-form';
 
+import { saveProfile, getProfile } from './../../../redux/actions/authActions';
 import ScreenContainer from './../../../components/containers/ScreenContainer/ScreenContainer';
+import HeaderContainer from './../../containers/HeaderContainer/HeaderContainer';
 import Separator from './../../../components/dumb/Separator/Separator';
 import Input from './../../dumb/Input/Input';
 import Button from './../../dumb/Button/Button';
 import CardHeader from './../../dumb/CardHeader/CardHeader';
-import IconProfile from './../../../assets/svg/name.svg';
-import HeaderContainer from './../../containers/HeaderContainer/HeaderContainer';
 import StatusHeader from './../../smart/StatusHeader/StatusHeader';
 import Menu from './../../smart/Menu/Menu';
+import IconProfile from './../../../assets/svg/name.svg';
 
 const User: FunctionComponent = () => {
+  const dispatch = useDispatch();
   const myWallet = useSelector((state: any) => state.wallet);
+  const { auth } = useSelector((state: any) => state);
+  const { register, handleSubmit } = useForm();
+  const { profile } = auth;
+
+  useEffect(() => {
+    dispatch(getProfile(auth.user_id));
+  }, []);
+
+  const onSubmit = (values: object) => {
+    dispatch(saveProfile(values, auth.user_id));
+  };
 
   return (
     <Fragment>
       <HeaderContainer />
       <StatusHeader cryptoValue={myWallet.currency.BTC} fiatValue={myWallet.currency.USD} />
       <ScreenContainer>
-        <CardHeader content="Settings" subtitle="Personal Information" icon={IconProfile} className="header" />
-        <Separator className="medium" />
-        <div className="form--container">
-          <Input name="name" labelText="Your name" />
-          <Separator className="empty" />
-          <Input name="email" labelText="Email Address" />
-        </div>
-        <Separator className="medium" />
-        <div className="form--container">
-          <Input name="phone" labelText="Phone number" />
-          <Separator className="empty" />
-          <Input name="location" labelText="Country, Province" />
-          <Separator className="empty" />
-          <Input name="address" labelText="Your address" />
-        </div>
-        <Separator className="medium" />
-        <Button content="Save" onClick={() => console.log('click')} />
-        <Separator className="medium" />
-        <Menu />
+        <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'contents' }}>
+          <CardHeader content="Settings" subtitle="Personal Information" icon={IconProfile} className="header" />
+          <Separator className="medium" />
+          <div className="form--container">
+            <Input name="name" labelText="Full name" defaultValue={profile.name} inputRef={register} />
+          </div>
+          <Separator className="medium" />
+          <div className="form--container">
+            <Input name="phone" labelText="Phone number" defaultValue={profile.phone} inputRef={register} />
+            <Separator className="empty" />
+            <Input name="location" labelText="Country, Province" defaultValue={profile.location} inputRef={register} />
+            <Separator className="empty" />
+            <Input name="address" labelText="Your address" defaultValue={profile.address} inputRef={register} />
+          </div>
+          <Separator className="medium" />
+          <Button content="Save" onClick={() => console.log('click')} />
+          <Separator className="medium" />
+          <Menu />
+        </form>
       </ScreenContainer>
     </Fragment>
   );

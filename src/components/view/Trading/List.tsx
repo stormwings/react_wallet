@@ -39,7 +39,7 @@ const TradingList: FunctionComponent = () => {
           </div>
         </div>
         <Separator className="medium" />
-        <ListItems items={myWallet.tradings} onClick={(element: any) => history.push(`/trading/buy/${element}`)} noSpan />
+        <ListItems items={myWallet.tradings} onClick={(element: any) => history.push(`/trading/buy/${element}`)} includeSpan />
         <Separator />
         <Menu />
       </ScreenContainer>

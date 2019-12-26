@@ -1,6 +1,5 @@
 import React, { FunctionComponent, Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './Dashboard.scss';
 
 import { fetchWallet } from './../../../redux/actions/walletActions';
 
@@ -11,9 +10,11 @@ import Separator from './../../../components/dumb/Separator/Separator';
 import StatusHeader from './../../smart/StatusHeader/StatusHeader';
 import ListItems from './../../smart/ListItems/ListItems';
 import Menu from './../../smart/Menu/Menu';
+import { useHistory } from 'react-router-dom';
 
 const Dashboard: FunctionComponent = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // fetch and show main information
   const {
@@ -32,20 +33,7 @@ const Dashboard: FunctionComponent = () => {
       <HeaderContainer />
       <StatusHeader cryptoValue={wallet.currency.BTC} fiatValue={wallet.currency.USD} />
       <ScreenContainer>
-        <div className="card--header__currencies">
-          <CurrencyStatus
-            principalValue={`${wallet.currency.USD} USD`}
-            secondaryValue={`BTC ${wallet.currency.BTC}`}
-            principalIcon="bitcoin"
-          />
-          <CurrencyStatus
-            principalValue={`BTC ${wallet.currency.BTC}`}
-            secondaryValue={`${wallet.currency.USD} USD`}
-            principalIcon="bitcoin"
-          />
-        </div>
-        <Separator className="medium" />
-        <ListItems items={lastItems} />
+        <ListItems items={lastItems} includeSpan onClickSpan={() => history.push('/history')} />
         <Separator />
         <Menu />
       </ScreenContainer>

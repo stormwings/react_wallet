@@ -3,9 +3,10 @@ import * as types from './../types';
 const INITIAL_STATE = {
   loading: false,
   message: '' as string,
-  error: '' as string,
   key: '' as string,
-  user_id: '' as string
+  user_id: '' as string,
+  errors: null as any,
+  profile: {} as any
 };
 
 export default function(state = INITIAL_STATE, action: any) {
@@ -19,21 +20,25 @@ export default function(state = INITIAL_STATE, action: any) {
         ...state,
         key,
         user_id: user,
-        error: '',
+        errors: null,
         message: 'Successful authentication',
         loading: false
       };
     }
     case types.AUTH_LOADING: {
-      return { ...state, loading: true, message: '', error: '' };
+      return { ...state, loading: true, message: '', errors: null };
+    }
+    case types.AUTH_PROFILE: {
+      const profile = action.payload;
+      return { ...state, loading: true, message: '', errors: null, profile };
     }
     case types.AUTH_CLEAN: {
       const { detail } = action.payload;
-      return { ...INITIAL_STATE, message: detail, error: '', loading: false };
+      return { ...INITIAL_STATE, message: detail, errors: null, loading: false };
     }
     case types.AUTH_ERROR: {
-      const message = action.payload;
-      return { ...state, error: `User already exists or incorrect credentials - ${message}`, message: '', loading: false };
+      const { errors } = action.payload;
+      return { ...state, errors, message: '', loading: false };
     }
 
     default:

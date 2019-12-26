@@ -9,26 +9,25 @@ import { ResultOperation, Operation } from './../../../entities/Operation';
 interface IPropsList {
   items: Array<ResultOperation>;
   onClick?: Function;
-  noSpan?: boolean;
+  onClickSpan?: Function;
+  includeSpan?: boolean;
 }
 
 const ListItems: FunctionComponent<IPropsList> = props => {
-  const { items, onClick, noSpan } = props;
+  const { items, onClick, includeSpan, onClickSpan } = props;
 
   return (
     <Fragment>
-      {!noSpan && (
+      {includeSpan && (
         <SpanList
           content="Last"
           className="capital-letters"
           contentSecondary="See all"
-          onClickContentSecondary={() => console.log('onClick')}
+          onClickContentSecondary={() => (onClickSpan ? onClickSpan() : null)}
         />
       )}
-
       <Separator className="empty" />
-
-      <div style={{ maxHeight: '350px', overflowY: 'scroll', width: '100%' }}>
+      <div className="overflow_scroll">
         {items.map((item, i) => (
           <ItemRow key={i} item={item} onClick={onClick} />
         ))}
