@@ -14,7 +14,7 @@ import { Operation, ResultOperation } from './../../../entities/Operation';
 import { Trading } from './../../../entities/Trading';
 import { Wallet } from './../../../entities/Wallet';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallet, putWallet } from '../../../redux/actions/walletActions';
+import { fetchWallet, updateCurrency, createOperation, createTrading } from '../../../redux/actions/walletActions';
 
 const TradingPublish: FunctionComponent = () => {
   const { register, handleSubmit } = useForm();
@@ -28,20 +28,26 @@ const TradingPublish: FunctionComponent = () => {
   const myWallet = useSelector((state: any) => state.wallet);
   let wallet: Wallet = new Wallet({ ...myWallet });
   // get user's wallet from api
+  const {
+    auth: { user_id }
+  } = useSelector((state: any) => state);
+
   useEffect(() => {
-    dispatch(fetchWallet());
+    dispatch(fetchWallet(user_id));
   }, []);
 
   const onSubmit = (values: any) => {
     let result: ResultOperation = ChargeOperation.createOperation(values.amount, values.finalAmount);
     // result.ingressAmount = null;
-    const success = wallet.newOperation(result);
-    if (success) {
+    const operation: any = wallet.newOperation(result);
+    if (operation) {
       setAmountError({ error: false, message: '' });
       // create Trading and Operation to send to backend
-      let TradingToCreate: Trading = new Trading(result);
-      wallet.createTrading(TradingToCreate);
-      dispatch(putWallet({ ...wallet })); // new wallet value
+      let TradingToCreate: Trading = new Trading(result, user_id);
+      // wallet.createTrading(TradingToCreate);
+      dispatch(updateCurrency(user_id, operation.currency));
+      dispatch(createOperation(operation.operation));
+      dispatch(createTrading(TradingToCreate));
     } else {
       setAmountError({ error: true, message: 'Insufficient funds' });
     }

@@ -50,4 +50,46 @@ export const createOperation = (body: any) => async (dispatch: any) => {
   }
 };
 
-export const putWallet = (body: any) => console.log('test');
+export const createTrading = (body: any) => async (dispatch: any) => {
+  try {
+    const headers = buildTokenHeader();
+    // normalize
+    body.trading_type = body.type;
+    delete body.type;
+
+    // request
+    await Axios.post(`http://localhost:8000/trading/`, body, { headers });
+  } catch (error) {
+    console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
+    const { message } = error;
+    dispatch(errorWallet({ message_error: message }));
+  }
+};
+
+export const removeTrading = (tradingId: number) => async (dispatch: any) => {
+  try {
+    const headers = buildTokenHeader();
+    await Axios.delete(`http://localhost:8000/trading/${tradingId}/`, { headers });
+  } catch (error) {
+    console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
+    const { message } = error;
+    dispatch(errorWallet({ message_error: message }));
+  }
+};
+
+export const updatePublisherCurrency = (publisherId: any, publisherMoney: any) => async (dispatch: any) => {
+  try {
+    const headers = buildTokenHeader();
+
+    let {
+      data: { USD }
+    } = await Axios.get(`http://localhost:8000/wallet/${publisherId}/`, { headers });
+    USD += publisherMoney;
+    const result = await Axios.put(`http://localhost:8000/wallet/${publisherId}/`, { USD }, { headers });
+    dispatch(updateWallet(result.data));
+  } catch (error) {
+    console.warn(error.config, error.code, error.request, error.response, error.isAxiosError);
+    const { message } = error;
+    dispatch(errorWallet({ message_error: message }));
+  }
+};

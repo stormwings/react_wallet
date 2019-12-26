@@ -18,8 +18,13 @@ const TradingList: FunctionComponent = () => {
   const myWallet = useSelector((state: any) => state.wallet);
   const dispatch = useDispatch();
   const history = useHistory();
+  // get user's wallet from api
+  const {
+    auth: { user_id }
+  } = useSelector((state: any) => state);
+
   useEffect(() => {
-    dispatch(fetchWallet());
+    dispatch(fetchWallet(user_id));
   }, []);
 
   return (

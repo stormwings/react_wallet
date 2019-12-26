@@ -24,8 +24,8 @@ export class Wallet {
     this.tradings = [...wallet.tradings];
   }
 
-  public newOperation(operationResult: any) {
-    operationResult.user = this.userId;
+  public newOperation(operationResult: any, otherUserId: any = null) {
+    operationResult.user = otherUserId ? otherUserId : this.userId;
 
     switch (operationResult.type) {
       case 'buy_crypto': {
@@ -49,9 +49,7 @@ export class Wallet {
           this.currency.USD = parseFloat((this.currency.USD - usdToSell).toFixed(2));
           this.currency.BTC = parseFloat((this.currency.BTC + btcToBuy).toFixed(5));
 
-          let newOperationsArray = [operationResult, ...this.operations];
-          this.operations = newOperationsArray;
-          return true;
+          return { currency: this.currency, operation: operationResult };
         } else {
           return false;
         }
@@ -76,20 +74,16 @@ export class Wallet {
         if (btcToSell <= this.currency.BTC) {
           this.currency.BTC = parseFloat((this.currency.BTC - btcToSell).toFixed(5));
 
-          let newOperationsArray = [operationResult, ...this.operations];
-          this.operations = newOperationsArray;
-          return true;
+          return { currency: this.currency, operation: operationResult };
         } else {
           return false;
         }
       }
       case 'trading_finish': {
         const usdToCharge = parseFloat(operationResult.ingressAmount);
-        this.currency.USD = parseFloat((this.currency.USD + usdToCharge).toFixed(2));
+        // this.currency.USD = parseFloat((this.currency.USD + usdToCharge).toFixed(2));
 
-        let newOperationsArray = [operationResult, ...this.operations];
-        this.operations = newOperationsArray;
-        return true;
+        return { publisherMoney: usdToCharge, operation: operationResult };
       }
       case 'buy_fiat':
       default: {
@@ -99,6 +93,8 @@ export class Wallet {
       }
     }
   }
+
+  // pending remove
 
   public createTrading(trading: Trading) {
     let newTradingsArray = [trading, ...this.tradings];

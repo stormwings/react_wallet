@@ -1,5 +1,4 @@
 export class Trading {
-  public id: number | string;
   public publisher: number | string;
   public currencyStart: string | null;
   public currencyEnd: string | null;
@@ -8,9 +7,8 @@ export class Trading {
   public substractionAmount: string | null;
   public ingressAmount: string;
 
-  constructor(currency: any) {
-    this.id = Date.now();
-    this.publisher = 3;
+  constructor(currency: any, userId: number) {
+    this.publisher = userId;
     this.type = currency.type;
     this.date = currency.date;
     // changeds because its a buy
