@@ -9,8 +9,20 @@ export default {
   component: Avatar
 };
 
-export const Image = () => (
+export const Small = () => (
   <Avatar size="small">
+    <SVGUser />
+  </Avatar>
+);
+
+export const Medium = () => (
+  <Avatar size="medium">
+    <SVGUser />
+  </Avatar>
+);
+
+export const Big = () => (
+  <Avatar size="big">
     <SVGUser />
   </Avatar>
 );
