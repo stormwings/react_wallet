@@ -1,9 +1,10 @@
-import React, { FunctionComponent } from "react";
-import "./Navbar.scss";
-import ImageMenuIcon from "./../../../assets/image/menu.png";
-import SvgUser from "./../../../assets/components/SvgUser";
-import { useHistory } from "react-router-dom";
-import Avatar from "../Avatar/Avatar";
+import React, { FunctionComponent } from 'react';
+import { useHistory } from 'react-router-dom';
+import './Navbar.scss';
+
+import ImageMenuIcon from './../../../assets/image/menu.png';
+import SvgUser from './../../../assets/svg/user.svg';
+import Avatar from '../Avatar/Avatar';
 
 interface IProps {
   title: string;
@@ -23,14 +24,12 @@ export const Navbar: FunctionComponent<IProps> = props => {
         <img src={ImageMenuIcon} alt="menu-icon" className="image" />
         <span className="title">{title}</span>
       </div>
-      <div
-        className="menu-avatar"
-        style={{ cursor: "pointer" }}
-        onClick={() => history.push("/user")}
+      <div 
+        className="menu-avatar" 
+        style={{ cursor: 'pointer' }} 
+        onClick={() => history.push('/user')}
       >
-        <Avatar size="small">
-          <SvgUser />
-        </Avatar>
+        <Avatar id="navbar" image={SvgUser} size="small" />
       </div>
     </div>
   );
