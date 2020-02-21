@@ -8,7 +8,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-fake-server": "json-server --port 3001 --watch server/start_db.json",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:faker": "echo holus"
   },
   "eslintConfig": {
     "extends": "react-app"
