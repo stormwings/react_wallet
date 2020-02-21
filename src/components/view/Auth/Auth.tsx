@@ -88,11 +88,19 @@ interface IProps {
 const RegisterInputs: FunctionComponent<IProps> = props => {
   return (
     <Fragment>
-      <Input name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
+      <Input id="auth_username" name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
       <Separator className="empty" />
-      <Input name="password1" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
+      <Input id="auth_password" name="password1" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
       <Separator className="empty" />
-      <Input name="password2" labelText="Confirm password" type="password" inputRef={props.bind} required autoComplete={false} />
+      <Input
+        id="auth_rpassword"
+        name="password2"
+        labelText="Confirm password"
+        type="password"
+        inputRef={props.bind}
+        required
+        autoComplete={false}
+      />
     </Fragment>
   );
 };
@@ -100,9 +108,9 @@ const RegisterInputs: FunctionComponent<IProps> = props => {
 const LoginInputs: FunctionComponent<IProps> = props => {
   return (
     <Fragment>
-      <Input name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
+      <Input id="auth_username" name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
       <Separator className="empty" />
-      <Input name="password" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
+      <Input id="auth_password" name="password" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
     </Fragment>
   );
 };

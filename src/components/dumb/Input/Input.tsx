@@ -4,6 +4,7 @@ import './Input.scss';
 interface IProps {
   name: string;
   labelText: string;
+  id?: string;
   onChange?: any;
   inputRef?: any;
   type?: string;
@@ -20,6 +21,7 @@ interface IProps {
 
 const Input: FunctionComponent<IProps> = props => {
   const {
+    id,
     name,
     disabled,
     placeholder,
@@ -49,6 +51,7 @@ const Input: FunctionComponent<IProps> = props => {
   return (
     <div className={`wrapper ${className}`}>
       <input
+        id={id}
         type={type}
         value={value}
         name={name}
