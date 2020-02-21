@@ -73,6 +73,7 @@ const TradingPublish: FunctionComponent = () => {
           <Separator className="medium" />
           <div className="form--container">
             <Input
+              id="publish_input"
               name="amount"
               labelText="Crypto amount to sell"
               error={amountError.error}
@@ -84,6 +85,7 @@ const TradingPublish: FunctionComponent = () => {
             />
             <Separator className="empty" />
             <Input
+              id="publish_input_result"
               name="finalAmount"
               labelText="Set price in USD"
               autoComplete={false}

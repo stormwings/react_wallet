@@ -4,7 +4,7 @@ import './Input.scss';
 interface IProps {
   name: string;
   labelText: string;
-  id?: string;
+  id: string;
   onChange?: any;
   inputRef?: any;
   type?: string;

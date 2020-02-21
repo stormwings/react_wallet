@@ -82,6 +82,7 @@ const TradingBuy: FunctionComponent = () => {
           {trading && (
             <div className="form--container">
               <Input
+                id="buy_input"
                 name="amount"
                 disabled
                 defaultValue={trading.substractionAmount}
@@ -92,7 +93,14 @@ const TradingBuy: FunctionComponent = () => {
                 inputRef={register}
               />
               <Separator className="empty" />
-              <Input name="finalAmount" labelText="Your new amount" defaultValue={trading.ingressAmount} disabled inputRef={register} />
+              <Input 
+                id="buy_input_result"
+                name="finalAmount"
+                labelText="Your new amount"
+                defaultValue={trading.ingressAmount}
+                disabled
+                inputRef={register}
+              />
             </div>
           )}
           <Separator className="medium" />

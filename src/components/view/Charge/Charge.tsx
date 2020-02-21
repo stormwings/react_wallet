@@ -111,6 +111,7 @@ const SellOperationForm = ({ error, onChange, register, newAmount, setAmount }: 
   return (
     <div className="form--container">
       <Input
+        id="charge_input"
         name="amount"
         labelText='Set the amount "in BTC" to sell'
         error={error.error}
@@ -120,7 +121,12 @@ const SellOperationForm = ({ error, onChange, register, newAmount, setAmount }: 
         inputRef={register}
       />
       <Separator className="empty" />
-      <Input name="finalAmount" labelText="Your BTC to charge" placeholder={newAmount} disabled inputRef={register} />
+      <Input id="charge_input_result" 
+        name="finalAmount" 
+        labelText="Your BTC to charge" 
+        placeholder={newAmount} 
+        disabled inputRef={register} 
+      />
     </div>
   );
 };
@@ -133,6 +139,7 @@ const BuyOperationForm = ({ error, onChange, register, newAmount, setAmount }: a
   return (
     <div className="form--container">
       <Input
+        id="charge_input"
         name="amount"
         labelText='Set the amount "in USD" to pay'
         error={error.error}
@@ -142,7 +149,13 @@ const BuyOperationForm = ({ error, onChange, register, newAmount, setAmount }: a
         inputRef={register}
       />
       <Separator className="empty" />
-      <Input name="finalAmount" labelText="BTC to buy" placeholder={newAmount} disabled inputRef={register} />
+      <Input
+        id="charge_input_result"
+        name="finalAmount" 
+        labelText="BTC to buy" 
+        placeholder={newAmount} 
+        disabled 
+        inputRef={register} />
     </div>
   );
 };
@@ -155,6 +168,7 @@ const ChargeOperationForm = ({ error, onChange, register, newAmount, setAmount }
   return (
     <div className="form--container">
       <Input
+        id="charge_input"
         name="amount"
         labelText='Set the amount "in USD" to charge'
         error={error.error}
@@ -164,7 +178,14 @@ const ChargeOperationForm = ({ error, onChange, register, newAmount, setAmount }
         inputRef={register}
       />
       <Separator className="empty" />
-      <Input name="finalAmount" labelText="Your new amount" placeholder={newAmount} disabled inputRef={register} />
+      <Input
+        id="charge_input_result"
+        name="finalAmount"
+        labelText="Your new amount"
+        placeholder={newAmount}
+        disabled
+        inputRef={register}
+      />
     </div>
   );
 };
