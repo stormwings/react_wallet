@@ -40,7 +40,7 @@ const Auth: FunctionComponent = () => {
             {errors && (
               <p className="option">
                 {errors.map((error: string, i: number) => (
-                  <i key={i} className="red">
+                  <i key={i} id="auth_error_message" className="red">
                     {error}
                   </i>
                 ))}
@@ -88,12 +88,26 @@ interface IProps {
 const RegisterInputs: FunctionComponent<IProps> = props => {
   return (
     <Fragment>
-      <Input id="auth_username" name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
-      <Separator className="empty" />
-      <Input id="auth_password" name="password1" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
+      <Input 
+        id="auth_input_username" 
+        name="username" 
+        labelText="Username" 
+        inputRef={props.bind} 
+        required 
+        autoComplete={false}
+      />
       <Separator className="empty" />
       <Input
-        id="auth_rpassword"
+        id="auth_input_password"
+        name="password1"
+        labelText="Password"
+        type="password"
+        inputRef={props.bind}
+        required autoComplete={false}
+      />
+      <Separator className="empty" />
+      <Input
+        id="auth_input_rpassword"
         name="password2"
         labelText="Confirm password"
         type="password"
@@ -108,9 +122,23 @@ const RegisterInputs: FunctionComponent<IProps> = props => {
 const LoginInputs: FunctionComponent<IProps> = props => {
   return (
     <Fragment>
-      <Input id="auth_username" name="username" labelText="Username" inputRef={props.bind} required autoComplete={false} />
+      <Input 
+        id="auth_input_username"
+        name="username"
+        labelText="Username"
+        inputRef={props.bind}
+        required
+        autoComplete={false}
+      />
       <Separator className="empty" />
-      <Input id="auth_password" name="password" labelText="Password" type="password" inputRef={props.bind} required autoComplete={false} />
+      <Input 
+        id="auth_input_password"
+        name="password"
+        labelText="Password"
+        type="password" inputRef={props.bind}
+        required
+        autoComplete={false}
+      />
     </Fragment>
   );
 };
