@@ -9,6 +9,8 @@ import User from './components/view/User/User';
 import TradingList from './components/view/Trading/List';
 import TradingPublish from './components/view/Trading/Publish';
 import TradingBuy from './components/view/Trading/Buy';
+import Login from './components/view/Auth/Login';
+import Register from './components/view/Auth/Register';
 
 const Router: FunctionComponent<BrowserRouterProps> = () => {
   return (
@@ -18,6 +20,8 @@ const Router: FunctionComponent<BrowserRouterProps> = () => {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/auth/:type" component={Auth} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
             <Route exact path="/charge/:type" component={Charge} />
             <Route exact path="/trading/list" component={TradingList} />
             <Route exact path="/trading/publish" component={TradingPublish} />
@@ -35,4 +39,4 @@ const Router: FunctionComponent<BrowserRouterProps> = () => {
 
 export default Router;
 
-const NoMatch: StatelessComponent<RouteComponentProps> = () => <Redirect to="/auth/login" />;
+const NoMatch: StatelessComponent<RouteComponentProps> = () => <Redirect to="/login" />;
