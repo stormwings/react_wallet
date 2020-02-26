@@ -2,7 +2,6 @@ import React, { FunctionComponent, StatelessComponent } from 'react';
 import { BrowserRouter, Route, Switch, BrowserRouterProps, RouteComponentProps, Redirect } from 'react-router-dom';
 
 import Dashboard from './components/view/Dashboard/Dashboard';
-import Auth from './components/view/Auth/Auth';
 import Charge from './components/view/Charge/Charge';
 import History from './components/view/History/History';
 import User from './components/view/User/User';
@@ -19,7 +18,6 @@ const Router: FunctionComponent<BrowserRouterProps> = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route exact path="/auth/:type" component={Auth} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/charge/:type" component={Charge} />
