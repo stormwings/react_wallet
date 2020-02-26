@@ -40,6 +40,9 @@ export default function(state = INITIAL_STATE, action: any) {
       const { errors } = action.payload;
       return { ...state, errors, message: '', loading: false };
     }
+    case types.AUTH_CLEAR_ERRORS: {
+      return { ...state, errors: null };
+    }
 
     default:
       return state;

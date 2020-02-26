@@ -10,6 +10,7 @@ export const authClean = (payload: object) => ({ type: types.AUTH_CLEAN, payload
 export const setProfile = (payload: object) => ({ type: types.AUTH_PROFILE, payload });
 export const authLoading = (payload: boolean) => ({ type: types.AUTH_LOADING, payload });
 export const authError = (payload: object) => ({ type: types.AUTH_ERROR, payload });
+export const authClearErrors = () => ({ type: types.AUTH_CLEAR_ERRORS });
 
 export const authSignIn = (body: object) => (dispatch: Dispatch) => {
   dispatch(authLoading(true));
