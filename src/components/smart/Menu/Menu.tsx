@@ -16,7 +16,7 @@ const Menu: FunctionComponent = () => {
   const dispatch = useDispatch();
   const { key } = useSelector((state: any) => state.auth);
 
-  if (!key) return <Redirect to={'/auth/login'} />;
+  if (!key) return <Redirect to={'/login'} />;
 
   return (
     <div id="card--header__container">
