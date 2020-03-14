@@ -104,7 +104,7 @@ const TradingBuy: FunctionComponent = () => {
             </div>
           )}
           <Separator className="medium" />
-          <Button content="Confirm" disabled={disabled} />
+          <Button className="--primary" content="Confirm" disabled={disabled} />
           <Separator />
           <Menu />
         </form>

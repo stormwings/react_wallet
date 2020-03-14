@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './Button.scss';
+import bitcoin from './../../../assets/svg/icon_bitcoin.svg';
 
 type ButtonTypes = "button" | "submit" | "reset";
 
@@ -41,7 +42,7 @@ const Button: FunctionComponent<IProps> = props => {
         onClick={() => (onClick ? onClick() : defaultProps.onClick())}
         type={type || 'submit'}
       >
-        {icon && <div className={`icon --${icon}`}>icon</div>}
+        {icon && <img src={bitcoin} />}
         {content}
       </button>
     </div>

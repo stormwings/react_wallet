@@ -14,8 +14,53 @@
     border: none;
     font-family: $fontRoboto;
     font-size: 15px;
-    color: white;
-    background-color: $colorPrimary;
     cursor: pointer;
+    outline: none;
+
+    &.--primary {
+      background-color: $colorPrimary;
+      color: white;
+      @include basic-click-effect();
+
+      &.--disabled {
+        background-color: $colorPrimaryDisabled;
+        transform: none;
+      }
+    }
+
+    &.--success {
+      background-color: $colorSuccess;
+      color: white;
+      @include basic-click-effect();
+    }
+
+    &.--icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        margin-right: 5px;
+        max-width: 25px;
+      }
+    }
+
+    &.--small {
+      height: 30px;
+      font-size: 12px;
+    }
+    
+    &.--large {
+      height: 50px;
+      font-size: 23px;
+    }
+
+    &.--round {
+      @include border-radius(25px);
+    }
+
+    &.--full {
+      max-width: 100%;
+    }
   }
 }

@@ -76,7 +76,7 @@ const User: FunctionComponent = () => {
             />
           </div>
           <Separator className="medium" />
-          <Button content="Save" onClick={() => console.log('click')} />
+          <Button className="--primary" content="Save" onClick={() => console.log('click')} />
           <Separator className="medium" />
           <Menu />
         </form>

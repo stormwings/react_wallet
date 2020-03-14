@@ -78,7 +78,7 @@ const Register: FunctionComponent = () => {
               />
             </div>
             <Separator className="empty" />
-            <Button content="Confirm" onClick={() => console.log('click')} />
+            <Button className="--primary" content="Confirm" onClick={() => console.log('click')} />
           </form>
           <p className="option">
             Already have an account?{' '}

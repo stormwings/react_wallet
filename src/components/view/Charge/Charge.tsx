@@ -92,7 +92,7 @@ const Charge: FunctionComponent = () => {
             <ChargeOperationForm error={error} onChange={onChange} register={register} newAmount={newAmount} setAmount={setAmount} />
           )}
           <Separator className="medium" />
-          <Button content="Confirm" disabled={disabled} />
+          <Button className="--primary" content="Confirm" disabled={disabled} />
           <Separator />
           <Menu />
         </form>
