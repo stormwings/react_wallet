@@ -3,6 +3,7 @@
 $colorBlack: #000000;
 $colorWhite: #ffffff;
 $colorPrimary: #35438e;
+$colorPrimaryDisabled: #5f6bb1;
 $colorSuccess: #33BE41;
 $colorGray: #A0ADBD;
 $colorRed: #CF5152;
@@ -83,4 +84,35 @@ sans-serif;
   -o-transition: $transition;
   -moz-transition: $transition;
   -webkit-transition: $transition;
+}
+
+@mixin material-click-effect {
+  &:after {
+    content: "";
+    background: rgba(255,255,255,0.3);
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    padding-top: 240%;
+    padding-left: 240%;
+    margin-top: -120%;
+    margin-left: -120%;
+    opacity: 0;
+    transition: all 1s;
+  }
+
+  &:active:after {
+    padding-top: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-left: 0;
+    opacity: 1;
+    transition: 0s;
+  }
+}
+
+@mixin basic-click-effect {
+  &:active {
+    transform: translateY(2px);
+  }
 }
