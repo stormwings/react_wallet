@@ -11,9 +11,7 @@ describe('Test authentication', () => {
 
   it('User must login', () => {
     cy.get('@userData').then(userData => {
-      cy.get('#auth_input_username').type(userData.username);
-      cy.get('#auth_input_password').type(userData.password);
-      cy.contains('.button', 'Confirm').click();
+      cy.completeLoginInput(userData.username, userData.password)
       cy.get('#auth_error_message').should('not.exist');
       cy.wait(2000);
       cy.contains('Logout').click();
@@ -26,9 +24,7 @@ describe('Test authentication', () => {
       cy.get('.container > #responsive--screen > #container--screen > .option > .blue').click();
       cy.get('.container > #responsive--screen > #container--screen > .option > .blue').click();
 
-      cy.get('#auth_input_username').type(userData.username);
-      cy.get('#auth_input_password').type(userData.password);
-      cy.contains('.button', 'Confirm').click();
+      cy.completeLoginInput(userData.username, userData.password)
       cy.get('#auth_error_message').should('not.exist');
       cy.wait(2000);
       cy.contains('Logout').click();
@@ -40,6 +36,7 @@ describe('Test authentication', () => {
     cy.get('@userData').then(userData => {
       cy.get('#auth_input_username').type(userData.username);
       cy.get('#auth_input_password').type(userData.wrong_password);
+      cy.screenshot()
       cy.contains('.button', 'Confirm').click();
 
       cy.get('.auth_error_message').should('be.visible');
