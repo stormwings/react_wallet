@@ -7,6 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "cypress:run": "cypress run",
     "cypress:open": "cypress open",
     "cypress:faker": "echo holus",
     "storybook": "start-storybook -p 9009 -s public",
