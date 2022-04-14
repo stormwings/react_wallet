@@ -1,0 +1,91 @@
+{
+    "wallet": {
+        "id": 1,
+        "profile_id": 1,
+        "BTC": 1.00001,
+        "USD": 10750
+    },
+    "tradings": [],
+    "operation": [
+        {
+            "id": 1,
+            "operation_type": "buy_fiat",
+            "date": "11/4/2019,15:49",
+            "currencyStart": null,
+            "currencyEnd": "USD",
+            "substractionAmount": 7250,
+            "ingressAmount": 7250,
+            "user": 1
+        },
+        {
+            "id": 2,
+            "operation_type": "buy_crypto",
+            "date": "11/4/2019,15:49",
+            "currencyStart": "USD",
+            "currencyEnd": "BTC",
+            "substractionAmount": 7250,
+            "ingressAmount": 1.00001,
+            "user": 1
+        },
+        {
+            "id": 3,
+            "operation_type": "trading_publish",
+            "date": "11/4/2019,15:50",
+            "currencyStart": "BTC",
+            "currencyEnd": "USD",
+            "substractionAmount": 1.00001,
+            "ingressAmount": 7500,
+            "user": 1
+        },
+        {
+            "id": 4,
+            "operation_type": "buy_fiat",
+            "date": "11/4/2019,15:51",
+            "currencyStart": null,
+            "currencyEnd": "USD",
+            "substractionAmount": 7500,
+            "ingressAmount": 7500,
+            "user": 2
+        },
+        {
+            "id": 5,
+            "operation_type": "trading_buy",
+            "date": "11/4/2019,15:51",
+            "currencyStart": "USD",
+            "currencyEnd": "BTC",
+            "substractionAmount": 7500,
+            "ingressAmount": 1.00001,
+            "user": 2
+        },
+        {
+            "id": 6,
+            "operation_type": "trading_finish",
+            "date": "11/4/2019,15:51",
+            "currencyStart": null,
+            "currencyEnd": "USD",
+            "substractionAmount": 1.00001,
+            "ingressAmount": 7500,
+            "user": 1
+        },
+        {
+            "id": 7,
+            "operation_type": "buy_fiat",
+            "date": "11/4/2019,15:52",
+            "currencyStart": null,
+            "currencyEnd": "USD",
+            "substractionAmount": 10500,
+            "ingressAmount": 10500,
+            "user": 1
+        },
+        {
+            "id": 8,
+            "operation_type": "buy_crypto",
+            "date": "11/4/2019,15:52",
+            "currencyStart": "USD",
+            "currencyEnd": "BTC",
+            "substractionAmount": 7250,
+            "ingressAmount": 1.00001,
+            "user": 1
+        }
+    ]
+}
