@@ -1,5 +1,6 @@
-import React, { FunctionComponent, Fragment, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { fetchWallet } from './../../../redux/actions/walletActions';
 
@@ -9,26 +10,28 @@ import Separator from './../../../components/dumb/Separator/Separator';
 import StatusHeader from './../../smart/StatusHeader/StatusHeader';
 import ListItems from './../../smart/ListItems/ListItems';
 import Menu from './../../smart/Menu/Menu';
-import { useHistory } from 'react-router-dom';
 
-const Dashboard: FunctionComponent = () => {
+import { ResultOperation } from './../../../entities/Operation'
+
+const Dashboard = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // fetch and show the main information
   const {
     auth: { user_id },
     wallet
   } = useSelector((state: any) => state);
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(fetchWallet(user_id));
-  }, []);
+  }, [user_id, dispatch]);
 
-  const operations = wallet.operations.filter((operation: any) => operation.user == user_id).slice(0, 5);
+  const findOperationsByUser = (operation: ResultOperation, userId: number) => operation.user === userId
+
+  const operations = wallet.operations.filter(findOperationsByUser);
 
   return (
-    <Fragment>
+    <>
       <HeaderContainer />
       <StatusHeader cryptoValue={wallet.currency.BTC} fiatValue={wallet.currency.USD} />
       <ScreenContainer>
@@ -36,7 +39,7 @@ const Dashboard: FunctionComponent = () => {
         <Separator />
         <Menu />
       </ScreenContainer>
-    </Fragment>
+    </>
   );
 };
 
